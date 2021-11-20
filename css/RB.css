@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+
+:root{
+    --orange:#ff7800;
+    --red:#922B21;
+    --pearl: #FFEFD5;
+    --green:#00ff00;
+    --black:#130f40;
+    --light-color:#666;
+    --box-shadow:.0 .5rem 1rem rgba(0,0,0,.1);
+    --border: .2rem solid rgba(0,0,0,.1);
+    --outline: .1rem solid rgba(0,0,0,.1);
+    --outline-hover: .2rem solid var(--black);
+}
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin:0; padding:0%; 
+    box-sizing: border-box;
+    outline: none; border: none;
+    text-transform: capitalize;
+    text-decoration: none;
+    transition: all .2s linear;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
+}
+
+section {
+  padding: 3rem 9%;
+}
+
+.title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  padding: 1.2rem 0;
+  border-bottom: 0.1rem solid rgba(0, 0, 0, 0.1);
+  color: #222;
+}
+
+.title span {
+  color: var(--red);
+  padding-left: .7rem;
+}
+
+.title a {
+  margin-left: auto;
+  color: #666;
+  font-size: 1.5rem;
+}
+
+.title a:hover {
+  color: var(--red);
+}
+
+.btn{
+    margin-top: 1rem;
+    display: inline-block;
+    padding: .8rem 3rem;
+    background: black;
+    color: white;
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background:var(--red);
+}
+
+body{
+    background: var(--pearl);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--grey); 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--red); 
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  background: white;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+.book {
+    box-shadow: 0px 5px 13px -3px rgba(0,0,0,0.75);
+    display: flex;
+    flex-wrap: wrap;
+}
+.description , .form{
+    width: 50%;
+    padding: 5%;
+}
+.description h1 {
+    text-transform: uppercase;
+    color: var(--red);
+    font-weight: 400;
+    margin-top: 0;
+}
+.description h1 strong{
+  font-weight: 700;
+  color: #000;
+}
+.description p {
+    color: black;
+    font-size: 14px;
+    line-height: 22px;
+}
+.quote p {
+    font-style: italic;
+    padding: 2%;
+    border-left: 4px solid var(--red);
+    padding-bottom: 20px;
+    text-transform: none;
+}
+.description ul {
+    padding-left: 16px;
+    list-style: circle;
+}
+.description ul li{
+    margin: 10px 0;
+}
+.form{
+  background: var(--red);
+}
+.form form{
+  color: black;
+    display: flex;
+  flex-wrap: wrap;
+}
+.inpbox.full {
+    width: 100%;
+    background: #fff;
+    padding: 3%;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.inpbox span::before {
+    margin-left: 0;
+}
+.inpbox span {
+    padding-right: 10px;
+    border-right: 2px solid var(--red);
+}
+.form select{
+    border: 0;
+    width: 90%;
+    color: black;
+    font-size: 1.7rem;
+}
+form input {
+    border: 0;
+    width: 74%;
+    color: black;
+    padding: 0 4%;
+}
+.form select:focus, form input {
+  outline: none;
+}
+.inpbox {
+    width: 100%;
+    background: #fff;
+    padding: 3%;
+    margin-bottom: 20px;
+    margin-right: 2%;
+}
+.inrbox{
+  width: 100%;
+  color: #000;
+}
+.inrbox span{
+  padding-right: 10px;
+}
+.inrbox span {
+    border: 0;
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
+.inrbox h2{
+    float: right;
+    font-size: 20px;
+}
+
+.inpbox input[type=date]{
+  width: 95%;
+}
+
+button.subt, button.rst{
+  padding: 2% 3%;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 0;
+}
+button.subt {
+    margin-right: 3%;
+    background: #fff;
+}
+button.rst {
+    background: #000;
+    color: #fff;
+}
+
+button.subt:hover {
+    background: black;
+    color: white;
+}
+button.rst:hover {
+    background: white;
+    color: black;
+}
+
+
+.address{
+    background: white;
+    width: 480px;
+    border-bottom: 1px solid black;
+    font-size: 1.7rem;
+    color:#333;
+    text-transform: none;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+
+  .liondance-detail{
+    padding-top: 20px;
+    font-size: 14px;
+    padding-bottom: 20px;
+    text-transform: none;
+  }
+
+  .liondance-detail h1{
+    padding-bottom: 20px;
+  }
+
+  .customer-detail{
+    padding-top: 20px;
+    font-size: 14px;
+    padding-bottom: 20px;
+    text-transform: none;
+  }
+
+  .customer-detail h1{
+    padding-bottom: 20px;
+  }
+
+  

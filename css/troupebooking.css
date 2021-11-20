@@ -1,0 +1,467 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+
+:root{
+    --orange:#ff7800;
+    --red:#922B21;
+    --grey: #F0F0F0;
+    --pearl: #FFEFD5;
+    --green:#00ff00;
+    --black:#130f40;
+    --light-color:#666;
+    --box-shadow:.0 .5rem 1rem rgba(0,0,0,.1);
+    --border: .2rem solid rgba(0,0,0,.1);
+    --outline: .1rem solid rgba(0,0,0,.1);
+    --outline-hover: .2rem solid var(--black);
+}
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin:0; padding:0; 
+    box-sizing: border-box;
+    outline: none; border: none;
+    text-decoration: none;
+    transition: all .2s linear;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
+}
+
+body{
+    background-color: #eee;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 15%;
+    z-index: 1000;
+    background: #fff;
+    -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    /* display: flex; */
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    /* padding: 2rem 17%; */
+  }
+
+.header span{
+    position: fixed;
+    left: 25rem;
+    font-size: 3.5rem;
+}
+
+textarea{
+    resize: none;
+    height: 100px;
+    width: 700px;
+}
+
+.side-menu-bar {
+    position: fixed;
+    z-index: 1001;
+    left: 0%;
+    height: 100%;
+    max-width: 205px;
+    background-color: var(--red);
+}
+
+.side-menu-bar .logo{
+    margin: 20px;
+}
+
+.side-menu-bar a:hover{
+    transform: scale(1.3);
+}
+
+.side-menu-bar .menu-container{
+    padding:10px;
+}
+
+.side-menu-bar img{
+    margin: 0 10px; 
+    border: 2px solid var(--pearl);
+    border-radius: 50%;
+}
+
+.side-menu-bar .menu{
+    text-align: center;
+    font-size: 2rem;
+    color: var(--pearl);
+    display: block;
+    margin: 10px 0px;
+    justify-content: space-between;
+}
+.btn{
+    margin-top: 1rem;
+    display: inline-block;
+    padding: .8rem 3rem;
+    background: black;
+    color: white;
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background:var(--red);
+}
+
+.profile-booking{
+  position: fixed;
+  width: 100%;
+  z-index: -1;
+  margin-top: 16rem;
+  margin-left: 100px;
+  height: 100%;
+}
+
+.navi{
+  position: fixed;
+  width: 100%;
+  z-index: -1;
+  margin-top: 12rem;
+  margin-left: 100px;
+  height: 100%;
+}
+
+.profile-booking ul,
+.navi ul{
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  height: 40px;
+  background: white;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, .3);
+}
+
+.navi ul li{
+  padding: 10px;
+  width: 600px;
+  cursor: pointer;
+  text-align: center;
+  transition: all .2s ease-in-out;
+  font-size: 1.5rem;
+}
+
+.profile-booking ul li{
+  padding: 10px;
+  width: 300px;
+  cursor: pointer;
+  text-align: center;
+  transition: all .2s ease-in-out;
+  font-size: 1.5rem;
+}
+
+.profile-booking ul li:active,
+.profile-booking ul li:hover,
+.navi ul li:active,
+.navi ul li:hover{
+  box-shadow: 0px -3px 0px rgba(288, 0, 70, .9) inset;
+}
+
+.profile-body{
+  width: 100%;
+  z-index: -1;
+}
+
+.tab{
+  width: 100%;
+  text-align: center;
+  display: none;
+}
+
+.nav1{
+    position: fixed;
+    margin-top: 16rem;
+    margin-left: 180px;
+    width: 1356px;
+    z-index: -1;
+    list-style-type: none;
+    height: 100%;
+    background: var(--grey);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, .3);
+    padding: 36px 40px 200px;
+    overflow: scroll;
+  }
+
+.column {
+  display: grid;
+  background: white;
+  grid-template-columns: 150px 220px 220px 220px 220px 220px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, .3);
+  padding: 10px;
+  margin: 10px;
+  color: black;
+  width: 1273px;
+  
+}
+
+.column:hover{
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, .3);
+  transform: scale(1.02);
+}
+
+.grid-item {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 10px;
+}
+
+.grid-item label{
+  font-size: 14px;
+}
+
+/* .grid-item:hover{
+
+} */
+
+.content-1{
+  text-align: center;
+}
+
+.content-1 img{
+  border-radius: 50%;
+  border: 4px solid var(--red);
+  box-shadow: 0px 5px 10px rgba(0,0,0,.2);
+}
+
+.content-2,
+.content-3,
+.content-4,
+.content-5,
+.content-6{
+  text-align: center;
+}
+
+.content-2 h2,
+.content-3 h2,
+.content-4 h2,
+.content-5 h2,
+.content-6 h2{
+  font-size: 1.5rem;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: var(--grey); 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--red); 
+  }
+
+  hr {    
+    border: 0;
+    border-top: 2px solid rgba(0, 0, 0, .1);
+  }
+
+  .hr1{
+    margin-top: 8rem;
+  }
+
+  .hr2{
+    margin-top: 4rem;
+  }
+
+  .hr3{
+    margin-top: 1rem;
+  }
+
+  .hr4{
+    margin-top: 1rem;
+  }
+
+  .nav2{
+    position: fixed;
+    margin-top: 12rem;
+    margin-left: 200px;
+    width: 1337px;
+    z-index: -1;
+    list-style-type: none;
+    height: 100%;
+    background: var(--grey);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, .3);
+    padding: 30px 40px 200px;
+    overflow: scroll;
+  }
+
+  .nav2 .back-btn{
+    font-size: 2rem;
+    padding: 10px;
+    padding-bottom: 20px;
+      
+  }
+
+  .nav2 .back-btn:hover{
+    transform: scale(1.2);
+  }
+
+  .nav2 h1{
+    position: absolute; 
+    font-size: 24px;
+    color: black;    
+  }
+
+  .customer-detail{
+    padding-top: 20px;
+    width: 100%;
+  }
+
+  .customer-detail h2{
+    font-size: 24px;
+    font-weight: initial;
+    padding-top: 1rem;
+    width: 100%;
+    color: grey;
+    padding-bottom: 2rem;
+  }
+
+  .customer-detail-part1,
+  .customer-detail-part2,
+  .customer-detail-part3,
+  .customer-detail-part4,
+  .customer-detail-part5{
+    padding-bottom: 2rem;
+  }
+
+  .customer-detail label{
+    font-size: 18px;
+  }
+
+  .customer-detail .customer-name{
+    padding-left: 40rem;
+  }
+
+  .customer-detail .customer-district{
+    padding-left: 48.5rem;
+    text-transform: none;
+  }
+
+  .customer-detail .customer-state{
+    padding-left: 50rem;
+  }
+
+  .customer-detail .customer-phone{
+    padding-left: 46rem;
+  }
+  
+  .customer-detail .customer-email{
+    padding-left: 49.5rem;
+    text-transform: none;
+  }
+
+  .booking-detail{
+    padding-top: 20px;
+    width: 100%;
+  }
+
+  .booking-detail h2{
+    font-size: 24px;
+    font-weight: initial;
+    padding-top: 1rem;
+    width: 100%;
+    color: grey;
+    padding-bottom: 2rem;
+  }
+
+  .booking-detail-part1,
+  .booking-detail-part2,
+  .booking-detail-part3,
+  .booking-detail-part4,
+  .booking-detail-part5,
+  .booking-detail-part6,
+  .booking-detail-part7,
+  .booking-detail-part8{
+    padding-bottom: 2rem;
+  }
+
+  .booking-detail label{
+    font-size: 18px;
+  }
+
+  .booking-detail .booking-type{
+    padding-left: 38rem;
+  }
+
+  .booking-detail .booking-service{
+    padding-left: 36rem;
+  }
+
+  .booking-detail .booking-date{
+    padding-left: 43.3rem;
+  }
+
+  .booking-detail .booking-time{
+    padding-left: 50rem;
+    text-transform: none;
+  }
+  
+  .booking-detail .booking-district{
+    padding-left: 48rem;
+    text-transform: none;
+  }
+
+  .booking-detail .booking-state{
+    padding-left: 49.5rem;
+    text-transform: none;
+  }
+
+  .booking-detail .booking-address{
+    padding-left: 47rem;
+    text-transform: none;
+  }
+
+  .booking-detail .booking-price{
+    padding-left: 50rem;
+    text-transform: none;
+  }
+
+  .nav2 .btn{
+    float: right;
+    margin-left: 10px;
+  }
+    
+  .print-btn{
+    position: fixed;
+    margin-top: 20rem;
+    margin-left: 500px;
+  }
+
+  @media print {
+    /* Hide unneccessary content */
+    body *{
+        visibility: hidden;
+    }
+
+    /*Display content */
+    .print-container, print-container *{
+        visibility: visible;
+    }
+
+    .print-container{
+        position:absolute;
+        left: 0px;
+        top:0px;
+    }
+}
