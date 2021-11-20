@@ -370,7 +370,7 @@ function deleteImg(id){
                     document.getElementById("images-container").innerHTML=this.responseText;
                     }
                 }
-                xmlhttp.open("GET","ajaxAddPerm.php?id="+id+"",true);
+                xmlhttp.open("GET","ajaxAddPerm.php?type="++"&service="++"&descrption="++"&price="++"",true);
                 xmlhttp.send();
     }
 

@@ -2,7 +2,7 @@
 include "DBConfig.php";
 
 $type = $_GET['type'];
-$service = $_GET['type'];
+$service = $_GET['service'];
 $description = $_GET['description'];
 $price = $_GET['price'];
 
