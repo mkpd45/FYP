@@ -757,7 +757,7 @@ th, td {
   border:none;
 }
 
-#delete-btn{
+.delete-btn{
   color: red;
   font-size: 18px;
 }

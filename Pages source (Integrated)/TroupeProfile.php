@@ -109,7 +109,6 @@
                 echo "</div>";
             }
             mysqli_free_result($vdResult);
-            mysqli_close($dbc);
             ?>
             </div>
         </div><br>
@@ -130,7 +129,7 @@
                                 
                                     <button class="btn" id="add">Add new performance</button>
                                     <div class="container1" id="container1" hidden>
-                                        <form action="/action_page.php">
+                                        <div id="form">
                                             <div class="row">
                                                 <div class="col-25"><label for="lbl-performance-type" class="lbl-performance-type"><b>Performance Type:</b></label>
                                                 </div>
@@ -150,7 +149,7 @@
                                                 <label for="add-performance-type">Please enter the type:</label>
                                             </div>
                                             <div class="col-75">
-                                                <input type="text" placeholder="Enter new performance type">
+                                                <input type="text" placeholder="Enter new performance type" id="otherValue">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -166,7 +165,7 @@
                                                 <label for="add-performance-service">Performance Service:</label>
                                             </div>
                                             <div class="col-75">
-                                                <select class="performance-service">
+                                                <select class="performance-service" id="service">
                                                     <option value="none"></option>
                                                     <option>Lion Dance Performance For House Blessing</option>
                                                     <option>Lion Dance Performance For Corporate Event</option>
@@ -182,14 +181,14 @@
                                                 <label for="add-performance-price">Price:</label>
                                             </div>
                                             <div class="col-75">
-                                                <input type="text" placeholder="Enter price" onkeypress='return restrictAlphabets(event)'>
+                                                <input type="text" id="price" placeholder="Enter price" onkeypress='return restrictAlphabets(event)'>
                                             </div>                                            
                                         </div>
                                         <br>
                                         <div class="row">
-                                            <input type="submit" id="sub" value="Submit">
+                                            <input type="submit" id="sub" value="Submit" onclick=addPerformance()>
                                         </div>
-                                        </form>
+                                    </div>
                                     </div>
                             </div>
                             <!-- <div class="performance-detail-part2">
@@ -218,48 +217,39 @@
                             <div class="performance-listing">
                                 <h1>Performance Listing</h1>
                                 <br><br>
-                                <table class="dynamic_field">
-                                    <tr>
-                                        <th>Performance Type</th>
-                                        <th>Description</th>
-                                        <th>Performance Service</th>
-                                        <th>Price</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="text" value="Traditional Lion Dance"></td>
-                                        <td><input type="text" value="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque sapiente quaerat, ex earum non veniam omnis praesentium culpa qui cum."></td>
-                                        <td><input type="text" value="Lion Dance Performance For Wedding Ceremony"></td>
-                                        <td><input type="text" value="RM 1300.00"></td>
-                                        <td><button class="btn">Edit</button></td>
-                                        <td><i class="fas fa-times-circle" id="delete-btn"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="text" value=""></td>
-                                        <td><input type="text" value=""></td>
-                                        <td><input type="text" value=""></td>
-                                        <td><input type="text" value=""></td>
-                                        <td><button class="btn">Edit</button></td>
-                                        <td><i class="fas fa-times-circle" id="delete-btn"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="text" value=""></td>
-                                        <td><input type="text" value=""></td>
-                                        <td><input type="text" value=""></td>
-                                        <td><input type="text" value=""></td>
-                                        <td><button class="btn">Edit</button></td>
-                                        <td><i class="fas fa-times-circle" id="delete-btn"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="text" value=""></td>
-                                        <td><input type="text" value=""></td>
-                                        <td><input type="text" value=""></td>
-                                        <td><input type="text" value=""></td>
-                                        <td><button class="btn">Edit</button></td>
-                                        <td><i class="fas fa-times-circle" id="delete-btn"></i></td>
-                                    </tr>
-                                    
+                                <table class="dynamic_field" id="listing">
+                                    <?php
+                                    echo "<tr>
+                                    <th>Performance Type</th>
+                                    <th>Description</th>
+                                    <th>Performance Service</th>
+                                    <th>Price</th>
+                                    <th></th>
+                                    <th>Delete</th>
+                                 </tr>";
+                        
+                                 $fetchPermQuery = "SELECT P.performId, P.performType, P.description, P.performService, P.price 
+                                                    FROM performances P, troupes T WHERE P.troupeId = T.troupeId
+                                                    AND T.troupeId = {$_SESSION['characterId']};";
+                    
+                                 $permResult = mysqli_query($dbc, $fetchPermQuery);
+                    
+                                 if($permResult){
+                                while($row = mysqli_fetch_assoc($permResult)){
+                                    echo "<tr>
+                                    <td><input type='text' value='{$row['performType']}' onkeypress='return false'></td>
+                                    <td><input type='text' value='{$row['description']}'  onkeypress='return false'></td>
+                                    <td><input type='text' value='{$row['performService']}'  onkeypress='return false'></td>
+                                    <td><input type='text' value='{$row['price']}'  onkeypress='return false'></td>
+                                    <td><button class='btn'>Edit</button></td>
+                                    <td><i class='delete-btn fas fa-times-circle' id='{$row['performId']}'></i></td>
+                                        </tr>";
+                                }
+                        
+                                    mysqli_free_result($permResult);
+                                    mysqli_close($dbc);
+                            }
+                                    ?>
                                 </table>
                             </div>  
                         </div>  
@@ -364,13 +354,23 @@ function deleteImg(id){
          }
 
     function addPerformance(){
+        
+        if(document.getElementById("typeSelect").value == "other")
+        var type = $("#otherValue").val();
+        else
+        var type = $("#typeSelect").val();
+        
+        var service = $("#service").val();
+        var description = $("#add-performance-description").val();
+        var price = $("#price").val();
+
         var xmlhttp=new XMLHttpRequest();
                 xmlhttp.onreadystatechange=function() {
                     if (this.readyState==4 && this.status==200) {
-                    document.getElementById("images-container").innerHTML=this.responseText;
+                    document.getElementById("listing").innerHTML=this.responseText;
                     }
                 }
-                xmlhttp.open("GET","ajaxAddPerm.php?type="++"&service="++"&descrption="++"&price="++"",true);
+                xmlhttp.open("GET","ajaxAddPerm.php?type="+type+"&service="+service+"&description="+description+"&price="+price+"",true);
                 xmlhttp.send();
     }
 
