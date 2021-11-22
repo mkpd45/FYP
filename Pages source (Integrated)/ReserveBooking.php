@@ -65,7 +65,7 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
           mysqli_free_result($infoResult); ?>
 
           <?php
-          $fetchInvtInfo = "SELECT * FROM inviters WHERE inviterId = {$_SESSION['userId']};";
+          $fetchInvtInfo = "SELECT * FROM inviters WHERE inviterId = {$_SESSION['characterId']};";
           $result = mysqli_query($dbc, $fetchInvtInfo);
           while($row = mysqli_fetch_assoc($result))
           { ?>
@@ -98,34 +98,38 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
         </div>
         <?php }
         mysqli_free_result($result);
-        mysqli_close($dbc);
+        
         ?>
         </div>
         <div class="form">
-          <form>
+          
+          <form action="Home.php">
+          <span class="msg" id="typeMsg"></span>
             <div class="inpbox full">
-              <select class="performance-type">
+              <select class="performance-type" id="typeSelect" onchange=getService()>
                     <option value="none">Select Performance Type</option>
-                    <option>Acrobatic Lion Dance</option>
-                    <option>Cai Qing Lion Dance</option>
-                    <option>Traditional Lion Dance</option>
-                    <option>24 Festive Drums</option>
-               </select>
+                    <?php 
+                          $fetchTypes = "SELECT P.performType FROM performances P, troupes T 
+                                         WHERE T.troupeId = P.troupeId AND P.troupeId = {$_GET['id']};";
+
+                            $typesResult = mysqli_query($dbc, $fetchTypes);
+                            while($typeRow = mysqli_fetch_assoc($typesResult)){
+                              echo "<option value='{$typeRow['performType']}'>{$typeRow['performType']}</option>";
+                            }
+                            mysqli_free_result($typesResult);
+                    ?>
+              </select>
             </div>
+            <span class="msg" id="serviceMsg"></span>
             <div class="inpbox full">
-                <select class="performance-service">
+                <select class="performance-service" id="serviceSelect" onchange=getPrice() disabled>
                     <option value="none">Select Performance Service</option>
-                    <option>Lion Dance Performance For House Blessing</option>
-                    <option>Lion Dance Performance For Corporate Event</option>
-                    <option>Lion Dance Performance For Wedding Ceremony</option>
-                    <option>Lion Dance For Grand Opening Ceremony</option>
-                    <option>Lion Dance Performance For Gala Event</option>
-                    <option>Lion Dance Performance For Launch Event</option>
                 </select>
             </div>
             <div class="inpbox">
-              <input type="date" placeholder="Date">          
+              <input type="date" placeholder="Date" min="<?php echo(date("Y-m-d",strtotime("+2 week"))); ?>" max="<?php echo(date("Y-m-d",strtotime("+3 months"))); ?>">          
             </div>
+            <span class="msg" id="timeMsg"></span>
             <div class="inpbox">
                 <select class="Time">
                         <option value="none">Select a time</option>
@@ -135,23 +139,7 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
                         <option value="Night">Night (7:00PM - 9:00PM)</option>
                 </select>
             </div>
-            <div class="inpbox">
-                <select class="district">
-                        <option value="none">Select district</option>
-                        <option value="segamat">Segamat</option>
-                        <option value="kedah">Kedah</option>
-                        <option value="kelantan">Kelantan</option>
-                        <option value="malacca">Malacca</option>
-                        <option value="negerisembilan">Negeri Sembilan</option>
-                        <option value="pahang">Pahang</option>
-                        <option value="perak">Perak</option>
-                        <option value="perlis">Perlis</option>
-                        <option value="sabah">Sabah</option>
-                        <option value="sarawak">Sarawak</option>
-                        <option value="selangor">Selangor</option>
-                        <option value="terrengganu">Terrengganu</option>
-                    </select>
-            </div>
+            <span class="msg" id="stateMsg"></span>
             <div class="inpbox">
                 <select class="state">
                     <option value="none">Select state</option>
@@ -169,11 +157,30 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
                     <option value="terrengganu">Terrengganu</option>
                 </select>
             </div>
+            <span class="msg" id="districtMsg"></span>
+            <div class="inpbox">
+                <select class="district">
+                        <option value="none">Select district</option>
+                        <option value="segamat">Segamat</option>
+                        <option value="kedah"></option>
+                        <option value="kelantan"></option>
+                        <option value="malacca"></option>
+                        <option value="negerisembilan"></option>
+                        <option value="pahang"></option>
+                        <option value="perak"></option>
+                        <option value="perlis"></option>
+                        <option value="sabah"></option>
+                        <option value="sarawak"></option>
+                        <option value="selangor"></option>
+                        <option value="terrengganu"></option>
+                    </select>
+            </div>
+            <span class="msg" id="addressMsg"></span>
                 <textarea name="address" class="address" cols="40" rows="4" placeholder="Address (be specific*)"></textarea>
             <div class="inpbox full">
               <div class="inrbox">
                 <span>Price:</span>
-                <h2>RM 130000</h2>
+                <h2 id="performPrice">RM </h2>
               </div>
             </div>
             <button class="subt">Submit</button>
@@ -185,3 +192,32 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
     <?php include "./footer.php" ?>
   </body>
 </html>
+
+<script>
+  function getService(){
+    var type = document.getElementById("typeSelect").value;
+    if(type != "none"){
+    var xmlhttp=new XMLHttpRequest();
+                xmlhttp.onreadystatechange=function() {
+                    if (this.readyState==4 && this.status==200) {
+                    document.getElementById("serviceSelect").innerHTML=this.responseText;
+                    }
+                }
+                xmlhttp.open("GET","ajaxSrvcSelection.php?type="+type+"&id="+<?php echo $_GET['id'] ?>+"",true);
+                xmlhttp.send();
+    document.getElementById("serviceSelect").disabled = false;
+  }
+    else{
+      document.getElementById("serviceSelect").disabled = true;
+      document.getElementById("serviceSelect").value = "none";
+      document.getElementById("performPrice").innerHTML = "RM "
+    }
+  }
+
+  function getPrice(){
+    if(document.getElementById("serviceSelect").value != "none")
+    document.getElementById("performPrice").innerHTML = "RM " + document.getElementById("serviceSelect").value;
+    else
+    document.getElementById("performPrice").innerHTML = "RM "
+  }
+</script>

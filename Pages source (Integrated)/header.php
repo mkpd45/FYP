@@ -239,10 +239,12 @@ html{
             if($("#email").val() == ""){
             $("#email-wrong").html("<i class='fas fa-exclamation-triangle'></i>&nbsp;&nbsp;Please enter the email");
             $("#email-wrong").show();
+            $("#passw-wrong").hide();
             }
             else if(!emailRegx.test($("#email").val())){
             $("#email-wrong").html("<i class='fas fa-exclamation-triangle'></i>&nbsp;&nbsp;Invalid email");
             $("#email-wrong").show();
+            $("#passw-wrong").hide();
             }
             else{
             $(".login-fail").hide();
@@ -252,8 +254,12 @@ html{
                     document.getElementById("login-form").innerHTML=this.responseText;
                     }
                 }
-                xmlhttp.open("GET","ajaxLogin.php?email="+$("#email").val()+"&passw="+$("#passw").val()+"",true);
+                xmlhttp.open("GET","ajaxLogin.php?email="+$("#email").val()+"&passw="+$("#passw").val()+"",false);
                 xmlhttp.send();
+                if(xmlhttp.responseText == "<h1 style='text-align:center;color:#09e32d'>Troupe Login success !</h1><br>")
+                window.location.href = "TroupeHome.php";
+                else if(xmlhttp.responseText == "<h1 style='text-align:center;color:#09e32d'>Inviter Login success !</h1><br>")
+                window.location.href = "Home.php";
             }
         });
     });

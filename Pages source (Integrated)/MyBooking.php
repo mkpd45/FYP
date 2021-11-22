@@ -21,7 +21,7 @@
                             <div class="column">                                
                                 <div class="grid-item">
                                     <div class="content-1">
-                                        <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
+                                        <img src="../Assets/Images/Web/home-bg1.png" width="100px" alt="">
                                     </div>
                                 </div>
                                 <div class="grid-item">
@@ -48,7 +48,7 @@
                             <div class="column">
                                 <div class="grid-item">
                                     <div class="content-1">
-                                        <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
+                                        <img src="../Assets/Images/Web/home-bg1.png" width="100px" alt="">
                                     </div>
                                 </div>
                                 <div class="grid-item">
@@ -75,7 +75,7 @@
                             <div class="column">
                                 <div class="grid-item">
                                     <div class="content-1">
-                                        <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
+                                        <img src="../Assets/Images/Web/home-bg1.png" width="100px" alt="">
                                     </div>
                                 </div>
                                 <div class="grid-item">
@@ -111,7 +111,7 @@
                             <div class="column">                                
                                 <div class="grid-item">
                                     <div class="content-1">
-                                        <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
+                                        <img src="../Assets/Images/Web/home-bg1.png" width="100px" alt="">
                                     </div>
                                 </div>
                                 <div class="grid-item">
@@ -138,7 +138,7 @@
                             <div class="column">
                                 <div class="grid-item">
                                     <div class="content-1">
-                                        <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
+                                        <img src="../Assets/Images/Web/home-bg1.png" width="100px" alt="">
                                     </div>
                                 </div>
                                 <div class="grid-item">
@@ -165,7 +165,7 @@
                             <div class="column">
                                 <div class="grid-item">
                                     <div class="content-1">
-                                        <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
+                                        <img src="../Assets/Images/Web/home-bg1.png" width="100px" alt="">
                                     </div>
                                 </div>
                                 <div class="grid-item">
@@ -199,7 +199,7 @@
                             <div class="column">                                
                                 <div class="grid-item">
                                     <div class="content-1">
-                                        <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
+                                        <img src="../Assets/Images/Web/home-bg1.png" width="100px" alt="">
                                     </div>
                                 </div>
                                 <div class="grid-item">
@@ -226,7 +226,7 @@
                             <div class="column">
                                 <div class="grid-item">
                                     <div class="content-1">
-                                        <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
+                                        <img src="../Assets/Images/Web/home-bg1.png" width="100px" alt="">
                                     </div>
                                 </div>
                                 <div class="grid-item">
@@ -253,7 +253,7 @@
                             <div class="column">
                                 <div class="grid-item">
                                     <div class="content-1">
-                                        <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
+                                        <img src="../Assets/Images/Web/home-bg1.png" width="100px" alt="">
                                     </div>
                                 </div>
                                 <div class="grid-item">
@@ -286,7 +286,7 @@
                             <div class="column">                                
                                 <div class="grid-item">
                                     <div class="content-1">
-                                        <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
+                                        <img src="../Assets/Images/Web/home-bg1.png" width="100px" alt="">
                                     </div>
                                 </div>
                                 <div class="grid-item">
@@ -313,7 +313,7 @@
                             <div class="column">
                                 <div class="grid-item">
                                     <div class="content-1">
-                                        <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
+                                        <img src="../Assets/Images/Web/home-bg1.png" width="100px" alt="">
                                     </div>
                                 </div>
                                 <div class="grid-item">
@@ -340,7 +340,7 @@
                             <div class="column">
                                 <div class="grid-item">
                                     <div class="content-1">
-                                        <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
+                                        <img src="../Assets/Images/Web/home-bg1.png" width="100px" alt="">
                                     </div>
                                 </div>
                                 <div class="grid-item">
@@ -373,7 +373,7 @@
                             <div class="column">                                
                                 <div class="grid-item">
                                     <div class="content-1">
-                                        <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
+                                        <img src="../Assets/Images/Web/home-bg1.png" width="100px" alt="">
                                     </div>
                                 </div>
                                 <div class="grid-item">
@@ -400,7 +400,7 @@
                             <div class="column">
                                 <div class="grid-item">
                                     <div class="content-1">
-                                        <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
+                                        <img src="../Assets/Images/Web/home-bg1.png" width="100px" alt="">
                                     </div>
                                 </div>
                                 <div class="grid-item">
@@ -427,7 +427,7 @@
                             <div class="column">
                                 <div class="grid-item">
                                     <div class="content-1">
-                                        <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
+                                        <img src="../Assets/Images/Web/home-bg1.png" width="100px" alt="">
                                     </div>
                                 </div>
                                 <div class="grid-item">

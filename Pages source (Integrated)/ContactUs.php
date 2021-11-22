@@ -16,11 +16,15 @@
 <?php 
 session_start();
 
-if(isset($_SESSION['userRole']))
-include "./userHeader.php";
+if(!empty($_SESSION['userRole'])){
+    if($_SESSION['userRole'] == "Troupe")
+        header("Location: TroupeProfile.php");
+    else
+        include "./userHeader.php";
+}
 else
-include "./header.php"; ?>
-
+include "./header.php";
+?>
 <h1 class="heading1">
         <span>c</span>
         <span>o</span>

@@ -19,9 +19,12 @@ and open the template in the editor.
 <body>
 <?php 
 session_start();
-
-if(!empty($_SESSION['userRole']))
-include "./userHeader.php" ;
+if(!empty($_SESSION['userRole'])){
+    if($_SESSION['userRole'] == "Troupe")
+        header("Location: TroupeProfile.php");
+    else
+        include "./userHeader.php";
+}
 else
 include "./header.php";
 
@@ -116,52 +119,7 @@ include "DBConfig.php"
     mysqli_free_result($result); //Free the associated from memory
     mysqli_close($dbc);
     ?>
-
-    <div class="box">
-        <div class="image">
-            <img src="../Assets/Images/Troupe/liondance1.jpg" alt="">
-        </div>
-        <div class="content">
-            <div class="icons">
-                <a href="#"><i class="fas fa-map-marker-alt"></i> Segamat, Johor</a>
-                <a href="#"><i class="fas fa-user"></i> by LKL Lion Dance Troupe</a>
-            </div>
-            <h3>Description</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <a href="#" class="btn">read more</a>
-        </div>
-    </div>
-
-    <div class="box">
-        <div class="image">
-            <img src="../Assets/Images/Troupe/liondance2.jpg" alt="">
-        </div>
-        <div class="content">
-            <div class="icons">
-                <a href="#"><i class="fas fa-map-marker-alt"></i> Kulai, Johor</a>
-                <a href="#"><i class="fas fa-user"></i> by JJJ Lion Dance Troupe</a>
-            </div>
-            <h3>Description</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <a href="#" class="btn">read more</a>
-        </div>
-    </div>
-
-    <div class="box">
-        <div class="image">
-            <img src="../Assets/Images/Troupe/liondance3.jpg" alt="">
-        </div>
-        <div class="content">
-            <div class="icons">
-                <a href="#"><i class="fas fa-map-marker-alt"></i> Pavillion, Selangor</a>
-                <a href="#"><i class="fas fa-user"></i> by GGG Lion Dance Troupe</a>
-            </div>
-            <h3>Description</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <a href="#" class="btn">read more</a>
-        </div>
-    </div>
-
+    
     </div>
 </section>
         

@@ -15,11 +15,14 @@
 <?php
 session_start();
 
-if(!empty($_SESSION['userRole']))
-include "./userHeader.php" ;
+if(!empty($_SESSION['userRole'])){
+    if($_SESSION['userRole'] == "Troupe")
+        header("Location: TroupeProfile.php");
+    else
+        include "./userHeader.php";
+}
 else
 include "./header.php";
-
 include "DBConfig.php";
 ?>
 

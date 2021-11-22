@@ -270,4 +270,9 @@ button.rst:hover {
     padding-bottom: 20px;
   }
 
+  .msg{
+    font-size: 1.7rem;
+    color: var(--pearl);
+  }
+
   

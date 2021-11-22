@@ -16,8 +16,9 @@
 <?php 
 session_start();
 
-if(!empty($_SESSION['userRole']))
-include "./userHeader.php";
+if(!empty($_SESSION['userRole'])){
+        include "./userHeader.php";
+}
 else
 include "./header.php"; ?>
 

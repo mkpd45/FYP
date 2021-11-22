@@ -4,7 +4,7 @@
 <?php
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     session_unset();
-    header("Refresh:0");
+    header("Location: Home.php");
 }
 ?>
 
@@ -26,7 +26,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <div class="navbar_right">
       <div class="notifications">
         <div class="icon_wrap"><i class="far fa-bell"></i></div>
-        
+        <span class="badge">3</span>
         <div class="notification_dd">
             <ul class="notification_ul">
                 <li class="starbucks accepted">
@@ -67,48 +67,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     </div>
                     <div class="notify_data">
                         <div class="title">
-                            Lorem, ipsum dolor.  
+                            gregoriantojd 
                         </div>
                         <div class="sub_title">
-                          Lorem ipsum dolor sit amet consectetur.
+                          Llorem10 asdjas aksdiuqh adjd m
                       </div>
                     </div>
                     <div class="notify_status">
                         <p>Pending</p>  
                     </div>
                 </li>  
-                <li class="pizzahut canceled">
-                    <div class="notify_icon">
-                        <span class="icon"></span>  
-                    </div>
-                    <div class="notify_data">
-                        <div class="title">
-                            Lorem, ipsum dolor.  
-                        </div>
-                        <div class="sub_title">
-                          Lorem ipsum dolor sit amet consectetur.
-                      </div>
-                    </div>
-                    <div class="notify_status">
-                        <p>Canceled</p>  
-                    </div>
-                </li> 
-                <li class="kfc pending">
-                    <div class="notify_icon">
-                        <span class="icon"></span>  
-                    </div>
-                    <div class="notify_data">
-                        <div class="title">
-                            Lorem, ipsum dolor.  
-                        </div>
-                        <div class="sub_title">
-                          Lorem ipsum dolor sit amet consectetur.
-                      </div>
-                    </div>
-                    <div class="notify_status">
-                        <p>Pending</p>  
-                    </div>
-                </li> 
+            
                 <li class="show_all">
                     <p class="link">Show All Activities</p>
                 </li> 

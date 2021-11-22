@@ -21,17 +21,21 @@ and open the template in the editor.
 
 session_start();
 
-if(!empty($_SESSION['userRole']))
-include "./userHeader.php" ;
+if(!empty($_SESSION['userRole'])){
+    if($_SESSION['userRole'] == "Troupe")
+        header("Location: TroupeProfile.php");
+    else
+        include "./userHeader.php";
+}
 else
-header("Home.php");
+include "./header.php";
 
 include "DBConfig.php";
 ?>
 
 <?php
 
-$inviter = $_SESSION['userId'];
+$inviter = $_SESSION['characterId'];
 $fetchInfo = "SELECT * FROM inviters WHERE inviterId = {$inviter};";
 $infoResult = mysqli_query($dbc, $fetchInfo);
 while($rowInfo = mysqli_fetch_assoc($infoResult))

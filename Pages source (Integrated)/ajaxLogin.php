@@ -1,7 +1,3 @@
-<script>
-
-</script>
-
 <?php
 session_start();
 
@@ -37,11 +33,20 @@ mysqli_close($dbc);
 if(!$emailFound)
 $emailMsg = "<i class='fas fa-exclamation-triangle'></i>&nbsp;&nbsp;This email is not registered with us.";
 
-if($emailMsg == "" && $passwMsg == ""){
-    echo "<h1 style='text-align:center;color:#09e32d'>Login success !</h1><br>";
-    echo "<h1 style='text-align:center'>Redirecting to homepage</h1><br>";
-    echo "<h1 id='count' onclick=redirectPage() style='text-align:center'>3</h1>";
+if($emailMsg == "" && $passwMsg == "" && $_SESSION['userRole'] == "Troupe"){
+    echo "<h1 style='text-align:center;color:#09e32d'>Troupe Login success !</h1><br>";
+    // echo "<h1 style='text-align:center'>Redirecting to homepage</h1><br>";
+    // echo "<h1 id='count' onclick=redirectPage() style='text-align:center'>3</h1>";
+    
 }
+else if($emailMsg == "" && $passwMsg == "" && $_SESSION['userRole'] == "Inviter")
+{
+    echo "<h1 style='text-align:center;color:#09e32d'>Inviter Login success !</h1><br>";
+    // echo "<h1 style='text-align:center'>Redirecting to homepage</h1><br>";
+    // echo "<h1 id='count' onclick=redirectPage() style='text-align:center'>3</h1>";
+    
+}
+
 else{
     
     echo "<h3>login now</h3>";
