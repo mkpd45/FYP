@@ -6,10 +6,7 @@
     <div class="right-side">
         
         <div class="nav2" id="nav2">
-        <!-- <button class="print-btn" onclick="printContent('overall-detail')">Print</button> -->
-        <button onclick="window.print();">Print</button>
             <button class="back-btn" onclick="loadDoc1()" width="200px" height="200px"><i class="fas fa-arrow-circle-left"></i>Back</button>
-            <div class="overall-detail print-container">
                 <h1>Check Booking Details</h1>
                 <hr class="hr2">
                 <div class="customer-detail">
@@ -81,17 +78,6 @@
                     </div>
                     <br>
                 </div>
-            </div>
         </div>
     </div>
-
-    <script>
-    function printContent(el){
-        var restorepage = document.body.innerHTML;
-        var printContent = document.getElementById(el).innerHTML;
-        document.body.innerHTML = printContent;
-        window.print();
-        document.body.innerHTML = restorepage;
-    }
-</script>
 </body>

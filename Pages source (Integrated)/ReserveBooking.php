@@ -103,7 +103,6 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
         </div>
         <div class="form">
           
-          <form action="Home.php">
           <span class="msg" id="typeMsg"></span>
             <div class="inpbox full">
               <select class="performance-type" id="typeSelect" onchange=getService()>
@@ -127,11 +126,11 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
                 </select>
             </div>
             <div class="inpbox">
-              <input type="date" placeholder="Date" min="<?php echo(date("Y-m-d",strtotime("+2 week"))); ?>" max="<?php echo(date("Y-m-d",strtotime("+3 months"))); ?>">          
+              <input type="date" id="dateReserve" placeholder="Date" min="<?php echo(date("Y-m-d",strtotime("+2 week"))); ?>" max="<?php echo(date("Y-m-d",strtotime("+3 months"))); ?>">          
             </div>
             <span class="msg" id="timeMsg"></span>
             <div class="inpbox">
-                <select class="Time">
+                <select class="Time" id="time">
                         <option value="none">Select a time</option>
                         <option value="Morning">Morning (9:00AM - 11:00AM)</option>
                         <option value="Afternoon">Afternoon (12:00PM - 2:00PM)</option>
@@ -141,7 +140,7 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
             </div>
             <span class="msg" id="stateMsg"></span>
             <div class="inpbox">
-                <select class="state">
+                <select class="state" id="state">
                     <option value="none">Select state</option>
                     <option value="johor">Johor</option>
                     <option value="kedah">Kedah</option>
@@ -159,7 +158,7 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
             </div>
             <span class="msg" id="districtMsg"></span>
             <div class="inpbox">
-                <select class="district">
+                <select class="district" id="district">
                         <option value="none">Select district</option>
                         <option value="segamat">Segamat</option>
                         <option value="kedah"></option>
@@ -176,16 +175,15 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
                     </select>
             </div>
             <span class="msg" id="addressMsg"></span>
-                <textarea name="address" class="address" cols="40" rows="4" placeholder="Address (be specific*)"></textarea>
+                <textarea name="address" class="address" cols="40" rows="4" placeholder="Address (be specific*)" id="address"></textarea>
             <div class="inpbox full">
               <div class="inrbox">
                 <span>Price:</span>
                 <h2 id="performPrice">RM </h2>
               </div>
             </div>
-            <button class="subt">Submit</button>
+            <button class="subt" onclick=completeReservation()>Submit</button>
             <button class="rst">Reset</button>
-          </form>
         </div>
       </div>
     </div>
@@ -219,5 +217,21 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
     document.getElementById("performPrice").innerHTML = "RM " + document.getElementById("serviceSelect").value;
     else
     document.getElementById("performPrice").innerHTML = "RM "
+  }
+
+  function completeReservation(){
+
+    
+
+    var xmlhttp=new XMLHttpRequest();
+    xmlhttp.open("POST","ajaxCreateReserv.php",false);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("troupeId="+<?php echo $_GET['id'] ?>+"&inviterId="+<?php echo $_SESSION['characterId']?>+
+                "&performDate="+$("#dateReserve").val()+"&performTime="+$("#time").val()+"&performState="+
+                 $("#state").val()+"&performDistrict="+$("#district").val()+"&performAddress="+$("#address").val()+"");
+    if(xmlhttp.responseText == "Success")
+      alert("Reserve success");
+    else
+      alert(xmlhttp.responseText);
   }
 </script>

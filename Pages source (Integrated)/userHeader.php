@@ -2,10 +2,21 @@
 <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 
 <?php
+
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     session_unset();
     header("Location: Home.php");
 }
+
+include "DBConfig.php";
+
+$fetchQ = "SELECT title, body, theStatus, purpose FROM notifications WHERE receiverId = '{$_SESSION['characterId']}' AND theStatus = 'UNREAD';";
+
+$result = mysqli_query($dbc, $fetchQ);
+
+$notifyCount = mysqli_affected_rows($dbc);
+
+
 ?>
 
 <div class="wrapper">
@@ -26,58 +37,35 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <div class="navbar_right">
       <div class="notifications">
         <div class="icon_wrap"><i class="far fa-bell"></i></div>
-        <span class="badge">3</span>
+        <span class="badge" id="badge"><?php if ($notifyCount > 0) echo $notifyCount; ?></span>
         <div class="notification_dd">
             <ul class="notification_ul">
-                <li class="starbucks accepted">
-                    <div class="notify_icon">
-                        <span class="icon"></span>  
+                <?php 
+                if ($notifyCount > 0) {
+                while($row = mysqli_fetch_assoc($result)){
+                    echo  "<li class='{$row['purpose']}'>
+                    <div class='notify_icon'>
+                        <span class='icon'></span>  
                     </div>
-                    <div class="notify_data">
-                        <div class="title">
-                            Lorem, ipsum dolor.  
+                    <div class='notify_data'>
+                        <div class='title'>
+                            {$row['title']}  
                         </div>
-                        <div class="sub_title">
-                          Lorem ipsum dolor sit amet consectetur.
+                        <div class='sub_title'>
+                          {$row['body']}
                       </div>
                     </div>
-                    <div class="notify_status">
+                    <div class='notify_status'>
                         <p>Accepted</p>  
                     </div>
-                </li>  
-                <li class="baskin_robbins canceled">
-                    <div class="notify_icon">
-                        <span class="icon"></span>  
-                    </div>
-                    <div class="notify_data">
-                        <div class="title">
-                            Lorem, ipsum dolor.  
-                        </div>
-                        <div class="sub_title">
-                          Lorem ipsum dolor sit amet consectetur.
-                      </div>
-                    </div>
-                    <div class="notify_status">
-                        <p>Canceled</p>  
-                    </div>
-                </li> 
-                <li class="mcd pending">
-                    <div class="notify_icon">
-                        <span class="icon"></span>  
-                    </div>
-                    <div class="notify_data">
-                        <div class="title">
-                            gregoriantojd 
-                        </div>
-                        <div class="sub_title">
-                          Llorem10 asdjas aksdiuqh adjd m
-                      </div>
-                    </div>
-                    <div class="notify_status">
-                        <p>Pending</p>  
-                    </div>
-                </li>  
+                </li>"; 
+               
+            }
             
+        } 
+            if ($notifyCount < 1) 
+            echo "<script>document.getElementById('badge').style.visibility = 'hidden'; </script>";
+?>
                 <li class="show_all">
                     <p class="link">Show All Activities</p>
                 </li> 
@@ -114,86 +102,30 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     <p>All Notifications</p>
                     <p class="close"><i class="fas fa-times" aria-hidden="true"></i></p>
                 </li> 
-                <li class="starbucks accepted">
-                    <div class="notify_icon">
-                        <span class="icon"></span>  
+                <?php 
+                if ($notifyCount > 0) {
+                while($row = mysqli_fetch_assoc($result)){
+                    echo  "<li class='{$row['purpose']}'>
+                    <div class='notify_icon'>
+                        <span class='icon'></span>  
                     </div>
-                    <div class="notify_data">
-                        <div class="title">
-                            Lorem, ipsum dolor.  
+                    <div class='notify_data'>
+                        <div class='title'>
+                            {$row['title']}  
                         </div>
-                        <div class="sub_title">
-                          Lorem ipsum dolor sit amet consectetur.
+                        <div class='sub_title'>
+                          {$row['body']}
                       </div>
                     </div>
-                    <div class="notify_status">
+                    <div class='notify_status'>
                         <p>Accepted</p>  
                     </div>
-                </li>  
-                <li class="baskin_robbins canceled">
-                    <div class="notify_icon">
-                        <span class="icon"></span>  
-                    </div>
-                    <div class="notify_data">
-                        <div class="title">
-                            Lorem, ipsum dolor.  
-                        </div>
-                        <div class="sub_title">
-                          Lorem ipsum dolor sit amet consectetur.
-                      </div>
-                    </div>
-                    <div class="notify_status">
-                        <p>canceled</p>  
-                    </div>
-                </li> 
-                <li class="mcd pending">
-                    <div class="notify_icon">
-                        <span class="icon"></span>  
-                    </div>
-                    <div class="notify_data">
-                        <div class="title">
-                            Lorem, ipsum dolor.  
-                        </div>
-                        <div class="sub_title">
-                          Lorem ipsum dolor sit amet consectetur.
-                      </div>
-                    </div>
-                    <div class="notify_status">
-                        <p>pending</p>  
-                    </div>
-                </li>  
-                <li class="pizzahut canceled">
-                    <div class="notify_icon">
-                        <span class="icon"></span>  
-                    </div>
-                    <div class="notify_data">
-                        <div class="title">
-                            Lorem, ipsum dolor.  
-                        </div>
-                        <div class="sub_title">
-                          Lorem ipsum dolor sit amet consectetur.
-                      </div>
-                    </div>
-                    <div class="notify_status">
-                        <p>canceled</p>  
-                    </div>
-                </li> 
-                <li class="kfc accepted">
-                    <div class="notify_icon">
-                        <span class="icon"></span>  
-                    </div>
-                    <div class="notify_data">
-                        <div class="title">
-                            Lorem, ipsum dolor.  
-                        </div>
-                        <div class="sub_title">
-                          Lorem ipsum dolor sit amet consectetur.
-                      </div>
-                    </div>
-                    <div class="notify_status">
-                        <p>accepted</p>  
-                    </div>
-                </li>
+                </li>"; 
+               
+            }
+            
+        } ?>
+                
             </ul>
         </div>
     </div>
@@ -203,7 +135,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(document).ready(function(){
-        
             $(".profile .icon_wrap").click(function(){
             $(this).parent().toggleClass("active");
             $(".notifications").removeClass("active");
@@ -212,6 +143,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $(".notifications .icon_wrap").click(function(){
             $(this).parent().toggleClass("active");
             $(".profile").removeClass("active");
+            $(".badge").hide();
         });
         
         $(".show_all .link").click(function(){
@@ -226,5 +158,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $("#logout-button").click(function(){
             $("#logout").submit();
         });
+
   });
+
+  
 </script>

@@ -762,5 +762,31 @@ th, td {
   font-size: 18px;
 }
 
+.unavailable-time .h2-header1{
+  font-size: 24px;
+  font-weight: initial;
+  padding-top: 2rem;
+  width: 100%;
+  color: grey;
+  padding-bottom: 2rem;
+}
 
+.unavailable-time .p3{
+  font-size: 18px;   
+  color: var(--red);
+  padding-bottom: 4rem;
+  text-transform: none;
+}
+
+.unavailable-time label{
+  font-size: 18px;
+  font-weight: 600;
+}
     
+.unavailable-time .lbl-leave-date{
+  padding-right: 38rem;
+}
+
+#leave-reason{
+  margin-top: 2rem;
+}    

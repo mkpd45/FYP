@@ -35,23 +35,27 @@ Union
 
 CREATE TABLE Reservations (
 reservationID INT(10) Unsigned AUTO_INCREMENT PRIMARY KEY,
-reserveDetails TEXT NOT NULL,
-dateCreated DATE NOT NULL,
+performDate DATE NOT NULL,
+performTime VARCHAR(10) NOT NULL,
+performState VARCHAR(20) NOT NULL,
+performDistrict VARCHAR(20) NOT NULL,
+performAddress VARCHAR(100) NOT NULL,
 status VARCHAR(10) NOT NULL,
-inviterId INT,
-troupeId INT,
+dateCreated DATE NOT NULL,
+inviterId INT(10) Unsigned,
+troupeId INT(10) Unsigned,
 CONSTRAINT FK_inviter FOREIGN KEY (inviterId) REFERENCES Inviters(inviterId),
 CONSTRAINT FK_InvitedTroupe FOREIGN KEY (troupeId) REFERENCES Troupes(troupeId)
 );
 
 CREATE TABLE Notifications(
 notifyId INT(10) Unsigned AUTO_INCREMENT PRIMARY KEY,
-body VARCHAR(20) NOT NULL,
+receiverId INT(10) NOT NULL,
+title VARCHAR(100) NOT NULL,
+body VARCHAR(20) NULL,
 dateSent DATE NOT NULL,
-status VARCHAR(6) NOT NULL,
-purpose CHAR NOT NULL,
-userId INT(10) Unsigned,
-CONSTRAINT FK_receiver FOREIGN KEY (userId) REFERENCES Users(userId)
+theStatus VARCHAR(6) NOT NULL,
+purpose VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE Performances(

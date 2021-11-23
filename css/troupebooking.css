@@ -441,27 +441,3 @@ textarea{
     float: right;
     margin-left: 10px;
   }
-    
-  .print-btn{
-    position: fixed;
-    margin-top: 20rem;
-    margin-left: 500px;
-  }
-
-  @media print {
-    /* Hide unneccessary content */
-    body *{
-        visibility: hidden;
-    }
-
-    /*Display content */
-    .print-container, print-container *{
-        visibility: visible;
-    }
-
-    .print-container{
-        position:absolute;
-        left: 0px;
-        top:0px;
-    }
-}

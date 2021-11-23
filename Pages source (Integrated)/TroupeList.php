@@ -58,7 +58,6 @@ include "DBConfig.php"
             <form action="" method="get">
             <label for="search-troupe">Search: </label>
             <input oninput=filterList() type="search" name="search-troupe" autofocus id="search">
-            <button type="submit"><i class="fas fa-search"></i> search</button>
             </form>
         </div>
         

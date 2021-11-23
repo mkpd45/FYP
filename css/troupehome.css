@@ -1,26 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
 
 :root{
-  --orange:#ff7800;
-  --red:#922B21;
-  --grey: #F0F0F0;
-  --pearl: #FFEFD5;
-  --green:#00ff00;
-  --black:#130f40;
-  --light-color:#666;
-  --box-shadow:.0 .5rem 1rem rgba(0,0,0,.1);
-  --border: .2rem solid rgba(0,0,0,.1);
-  --outline: .1rem solid rgba(0,0,0,.1);
-  --outline-hover: .2rem solid var(--black);
+    --orange:#ff7800;
+    --red:#922B21;
+    --grey: #F0F0F0;
+    --pearl: #FFEFD5;
+    --green:#00ff00;
+    --black:#130f40;
+    --light-color:#666;
+    --box-shadow:.0 .5rem 1rem rgba(0,0,0,.1);
+    --border: .2rem solid rgba(0,0,0,.1);
+    --outline: .1rem solid rgba(0,0,0,.1);
+    --outline-hover: .2rem solid var(--black);
 }
 
 *{
     font-family: 'Poppins', sans-serif;
-    margin:0; padding:0%; 
+    margin:0; padding:0; 
     box-sizing: border-box;
     outline: none; border: none;
-    text-transform: capitalize;
-    text-decoration: none;
     transition: all .2s linear;
 }
 
@@ -31,56 +29,49 @@ html{
     scroll-padding-top: 7rem;
 }
 
-.title {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    padding: 1.2rem 0;
-    border-bottom: 0.1rem solid rgba(0, 0, 0, 0.1);
-    color: #222;
+body{
+    background-color: #eee;
+}
+.btn{
+    margin-top: 1rem;
+    display: inline-block;
+    padding: .8rem 3rem;
+    background: black;
+    color: white;
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background:var(--red);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
   }
   
-  .title span {
-    color: var(--red);
-    padding-left: .7rem;
+  ::-webkit-scrollbar-track {
+    background: var(--grey); 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
   }
   
-  .title a {
-    margin-left: auto;
-    color: #666;
-    font-size: 1.5rem;
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--red); 
   }
-  
-  .title a:hover {
-    color: var(--red);
+
+  .container{
+      margin-top: 12rem;
+      margin-left: 20.3rem;
+      position: fixed;
+      overflow: scroll;
+      height: 100%; 
   }
-  
-  .btn{
-      margin-top: 1rem;
-      display: inline-block;
-      padding: .8rem 3rem;
-      background: black;
-      color: white;
-      font-size: 1.7rem;
-      cursor: pointer;
-  }
-  
-  .btn:hover{
-      background:var(--red);
-  }
-  
-  body{
-      background: var(--pearl);
-      overflow-x: hidden;
-      padding-top: 14rem;
-      margin: 0 10rem;
-  }
-  
+
     .background{
       padding-top: 20rem;        
       align-items: center;
@@ -92,7 +83,8 @@ html{
         width: 100%;
         display:flex;
         height: 190px;
-        position: relative;
+        position: fixed;
+        z-index: 9999;
         box-shadow: 0px 5px 10px  rgba(0, 0, 0, .2);
     }
 
@@ -151,9 +143,12 @@ html{
     }
 
     .main-bd{
+        margin-top: 17rem;
         width: 100%;
         display: flex;
-        padding-right: 15px;        
+        padding-right: 15px;   
+        overflow: scroll;
+        height: 100%; 
     }
 
     .profile-side{
@@ -186,24 +181,6 @@ html{
       color: var(--red);
       cursor: pointer;
       text-transform: lowercase;
-    }
-
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--grey); 
-    }
-     
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-      background: #888; 
-    }
-    
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--red); 
     }
 
     hr {    
@@ -278,89 +255,8 @@ html{
       justify-content: center;
     }
 
-/* 
-    .post-slider {
-        position: relative;
-        text-align: center;
-    }
-    
-    .post-slider .slider-title {
-        text-align: center;
-        margin: 30px auto;
-    }
-    
-    .post-slider .next {
-        position: absolute;
-        top: 50%;
-        right: 30px;
-        font-size: 2em;
-        color: var(--red);
-        cursor: pointer;
-    }
-    
-    .post-slider .prev {
-        position: absolute;
-        top: 50%;
-        left: 30px;
-        font-size: 2em;
-        color: var(--red);
-        cursor: pointer;
-    }
-    
-    .post-slider .post-wrapper {
-        width: 84%;
-        height: 550px;
-        margin: 0px auto;
-        overflow: hidden;
-        padding: 10px 0px 10px 0px;
-    }
-    
-    .post-slider .post-wrapper .post {
-        width: 300px;
-        height: 1000px;
-        margin: 0px 10px;
-        display: inline-block;
-        background: white;
-        border-radius: 5px;
-        box-shadow: 1rem 1rem 1rem -1rem #a0a0a033;        
-    }
-    
-    .post-slider .post-wrapper .post .post-info {
-        height: 130px;
-        padding: 0px 5px;
-        
-    }
-
-    .post-slider .post-wrapper .post .post-info h1{
-        color: var(--red);
-        text-decoration: underline;
-        
-    }
-
-    .post-slider .post-wrapper .post .post-info h2{
-        color: black;
-    }
-
-    .post-slider .post-wrapper .post .post-info p{
-        font-size: 15px;
-    }
-    
-    .post-slider .post-wrapper .post .slider-image {
-        width: 100%;
-        height: 200px;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        
-    }
-
-    .post-slider .post-wrapper .post .slider-image:hover{
-        -webkit-transform: scale(1.2);
-        transform: scale(1.2);
-        
-    } */
-
-    /* Image Slider start */
-    .slider{
+    /* Image slider1 start */
+    .slider1{
       position: relative;
       background: var(--red);
       width: 1000px;
@@ -371,23 +267,23 @@ html{
       left: 10%;
     }
 
-    .slider h1{
+    .slider1 h1{
       background: white;
     }
 
-    .slider .slide{
+    .slider1 .slide{
       position: absolute;
       width: 100%;
       height: 100%;
       clip-path: circle(0% at 0 50%);
     }
 
-    .slider .slide.active{
+    .slider1 .slide.active{
       clip-path: circle(150% at 0 50%);
       transition: 2s;
     }
 
-    .slider .slide img{
+    .slider1 .slide img{
       position: absolute;
       width: 100%;
       height: 100%;
@@ -395,7 +291,7 @@ html{
 
     }
 
-    .slider .slide .info{
+    .slider1 .slide .info{
       position: absolute;
       color: black;
       background: rgba(255, 255, 255, 0.3);
@@ -407,12 +303,12 @@ html{
       box-shadow: 0 5px 25px rgb(1 1 1 / 5%);
     }
 
-    .slider .slide .info h2{
+    .slider1 .slide .info h2{
       font-size: 2rem;
       font-weight: 1000;
     }
 
-    .slider .slide .info p{
+    .slider1 .slide .info p{
       font-size: 1.5rem;
       font-weight: 600;
     }
@@ -426,7 +322,7 @@ html{
       transition: opacity 0.5s ease;
     }
 
-    .slider:hover .navigation{
+    .slider1:hover .navigation{
       opacity: 1;
     }
 
@@ -475,18 +371,19 @@ html{
       background: var(--red);
 
     }
-    /* Image-Slider End */
+    /* Image-slider1 End */
 
     .slideshow-container {
         max-width: 1000px;
         position: relative;
         width: 1000px;
-        min-height: 500px;
+        min-height: 600px;
         margin: 20px;
         overflow: hidden;
         border-radius: 10px;
         left: 10%;
         object-fit: cover;
+        margin-bottom: 10rem;
       }
 
       .slideshow-container h1{
@@ -587,4 +484,4 @@ html{
       @media only screen and (max-width: 300px) {
         .prev, .next,.text {font-size: 11px}
       }
-  
+      

@@ -1,6 +1,8 @@
 <?php
+session_start();
+
 include "DBConfig.php";
-$inviter = $_SESSION['userId'];
+$inviter = $_SESSION['characterId'];
 $fetchInfo = "SELECT * FROM inviters WHERE inviterId = {$inviter};";
 $infoResult = mysqli_query($dbc, $fetchInfo);
 while($rowInfo = mysqli_fetch_assoc($infoResult))

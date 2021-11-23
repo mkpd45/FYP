@@ -201,6 +201,7 @@ html{
         <a href="Home.php">Home</a>
         <a href="TroupeList.php">Troupes</a>
         <a href="Aboutus.php">About Us</a>
+        <a href="JoinUs.php">Troupe With Us</a>
         <a href="ContactUs.php">Contact Us</a>
     </nav>
     <!-- <span class="badge">3</span> -->

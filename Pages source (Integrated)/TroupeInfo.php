@@ -1,12 +1,12 @@
+<!DOCTYPE html>
 <head>
-<title>Troupe Info</title>
+<title>Troupe Profile</title>
 
 <!--font awesome cdn link-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 <!--custom css file link-->
 <link rel="stylesheet" href="../css/TInfo.css">
-<link rel="stylesheet" href="../css/header.css">
 
 
 
@@ -34,7 +34,7 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
 ?>
 <div class="container">
     <div class="profile-header">
-        <div class="profile-img">
+    <div class="profile-img">
             <img src="<?php echo $rowInfo['troupeImage']; ?>" width="250" alt="">
         </div>
         <div class="profile-nav-info">
@@ -59,12 +59,42 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
                 <div class="user-bio">
                     <h1>Introduction</h1>
                     <p class="bio"><?php echo $rowInfo['description']; ?></p>
-                </div>                
+                </div>
+                <?php }  
+                mysqli_free_result($infoResult);?>       
+                <hr class="hr1">
+                <div class="performance">
+                    <h1>Performance</h1>
+                    <div class="performance-detail-part1">
+                        <label for="lbl-performance-type" class="lbl-performance-type"><b>Performance Type:</b></label>
+                            <select class="performance-type">
+                                <option value="none">Select Performance Type</option>
+                                <option>Acrobatic Lion Dance</option>
+                                <option>Cai Qing Lion Dance</option>
+                                <option>Traditional Lion Dance</option>
+                                <option>24 Festive Drums</option>
+                            </select>
+                    </div>
+                    <br>
+                    <div class="performance-detail-part2">
+                        <label for="lbl-performance-description" class="lbl-performance-description"><b>Description:</b></label>
+                            <textarea name="performance-description" class="performance-description" cols="30" rows="4" readonly></textarea>
+                    </div>
+                    <br>
+                    <div class="performance-detail-part3">
+                        <label for="lbl-performance-service" class="lbl-performance-service"><b>Performance Service:</b></label>
+                            <select class="performance-service">
+                                <option value="none">Select Performance Service</option>
+                                <option>Lion Dance Performance For House Blessing</option>
+                                <option>Lion Dance Performance For Corporate Event</option>
+                                <option>Lion Dance Performance For Wedding Ceremony</option>
+                                <option>Lion Dance For Grand Opening Ceremony</option>
+                                <option>Lion Dance Performance For Gala Event</option>
+                                <option>Lion Dance Performance For Launch Event</option>
+                            </select>
+                    </div>
+                </div>         
             </div>
-            <?php
-}
-            mysqli_free_result($infoResult);
-            ?>
             <br><br>
             <!-- Image Slider Start -->
             <div class="slider">                
@@ -111,7 +141,6 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
                             --$movNum;
                         }
                         ?>
-                        
                     </div>
             </div>
             <!-- Image Slider End -->
@@ -151,13 +180,14 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
                     }
                     ?>
                     </div>
+         
                 </div>  
         </div>
     </div>
 </div>
 <script src="https://cdn.plyr.io/3.6.3/plyr.polyfilled.js"></script>
 <script type="text/javascript" src="https//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script src="../js/script.js"></script>
+<script src="js/script.js"></script>
 <script>
 //video slider
 var slideIndex = 1;
@@ -241,6 +271,6 @@ prevBtn.addEventListener("click", () => {
 
 //Image Slider End
 </script>
-
+<?php include "./footer.php" ?>
 </body>
         

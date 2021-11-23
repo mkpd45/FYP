@@ -30,6 +30,17 @@ include "./header.php";
 
 ?>
 
+<h1 class="heading1">
+        <span>h</span>
+        <span>o</span>
+        <span>m</span>
+        <span>e</span>
+        <span>p</span>
+        <span>a</span>
+        <span>g</span>
+        <span>e</span>
+</h1>
+
 <section class="home">
 
     <div class="slides-container">

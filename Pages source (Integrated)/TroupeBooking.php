@@ -9,32 +9,14 @@
     <link rel="stylesheet" href="../css/troupebooking.css">
 </head>
 <body>
-<?php
-     session_start();
-?>
-<header class="header">    
-    <span id="troupe-booking">Booking List</span>
-</header>
 
-<div class="side-menu-bar">
-    <span style="display:block;font-size: 2rem; color:pink;text-align:center;font-weight: bold;">Welcome:</span>
-    <img src="../Assets/Images/Troupe/liondance2.jpg" width="180px" height="100px" alt="">
-    <span style="display:block;font-size: 2rem; color:var(--pearl);text-align:center;">Kung Seng Kung Lion Dance Troupe</span>
-    <br>
-    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
-    <div class="menu-container">
-    <a href="TroupeHome.php" class="menu">Home</a>
-    <a href="TroupeBooking.php" class="menu">Booking List</a>
-    <a href="TroupeProfile.php" class="menu">Troupe Profile</a>
-    <a href="#" class="menu">Notification</a>
-    <a href="TroupeContact.php" class="menu">Contact Us</a>
-    </div>
-</div>
+<?php include "./Troupe-side.php" ?>
+
 <div class="ajax" id="ajax">
     <div class="right-side">
             <div class="navi">
                 <ul>
-                    <li onclick="tabs(0)" id="user-booking" class="user-booking active">Booking</li>
+                    <li onclick="tabs(0)" class="user-booking active">Booking</li>
                     <li onclick="tabs(1)" class="user-history">History</li>
                 </ul>
             </div>
@@ -1068,8 +1050,7 @@
             </div>
     </div>
 </div>
-<script src="../js/script.js"></script>
-<?php echo "<script> document.getElementById('user-booking').click(); </script>"; ?>
+<script src="js/script.js"></script>
 <script>
     function loadDoc() {
   var xhttp = new XMLHttpRequest();

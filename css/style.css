@@ -331,7 +331,6 @@ body{
   }
 
   .home {
-    padding-top: 14rem;
     background: var(--pearl);
     background-size: cover;
     background-position: center;
@@ -706,4 +705,21 @@ body{
     html{
         font-size: 55%;
     }
+}
+
+.heading1{
+  text-align: center;  
+  padding:2.5rem 0;
+}
+
+.heading1 span{
+  font-size: 3.5rem;
+  background:rgba(255, 165, 0,.2);
+  color:var(--black);
+  border-radius: .5rem;
+  padding:.2rem 1rem;
+}
+
+.heading1 span.space{
+  background:none;
 }
