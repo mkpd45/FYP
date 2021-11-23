@@ -61,7 +61,7 @@ $notifyCount = mysqli_affected_rows($dbc);
                 </li>"; 
                
             }
-            
+            mysqli_free_result($result);
         } 
             if ($notifyCount < 1) 
             echo "<script>document.getElementById('badge').style.visibility = 'hidden'; </script>";

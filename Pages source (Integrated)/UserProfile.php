@@ -27,10 +27,10 @@ if(!empty($_SESSION['userRole'])){
     else
         include "./userHeader.php";
 }
-else
-include "./header.php";
-
-include "DBConfig.php";
+else{
+    include "./header.php";
+    include "DBConfig.php";
+    }
 ?>
 
 <?php
@@ -195,7 +195,7 @@ function loadDoc1() {
   xhttp.send();
 }
 
-function loadDoc2() {
+function loadDoc2(id) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -203,7 +203,7 @@ function loadDoc2() {
       this.responseText;
     }
   };
-  xhttp.open("GET", "BookingDetail.php", true);
+  xhttp.open("GET", "BookingDetail.php?id="+id+"", true);
   xhttp.send();
 }
 

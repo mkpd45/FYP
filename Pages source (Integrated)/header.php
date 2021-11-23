@@ -206,7 +206,6 @@ html{
     </nav>
     <!-- <span class="badge">3</span> -->
             <div class="icons">
-                <div class="fas fa-bars" id="menu-btn"></div>
                 <div class="fas fa-search" id="search-btn"></div>                
                 <div class="fas fa-user" id="login-btn"></div>
             </div>

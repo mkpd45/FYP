@@ -24,11 +24,12 @@ if(!empty($_SESSION['userRole'])){
         header("Location: TroupeProfile.php");
     else
         include "./userHeader.php";
+        
 }
-else
+else{
 include "./header.php";
-
-include "DBConfig.php"
+include "DBConfig.php";
+}
 ?>
 
 <h1 class="heading1">

@@ -13,11 +13,17 @@
   <?php 
 session_start();
 
-if(!empty($_SESSION['userRole']))
-include "./userHeader.php";
-else
+if(!empty($_SESSION['userRole'])){
+  if($_SESSION['userRole'] == "Troupe")
+      header("Location: TroupeProfile.php");
+  else
+      include "./userHeader.php";
+      
+}
+else{
 include "./header.php";
 include "DBConfig.php";
+}
 ?>
 
 <?php
@@ -182,11 +188,31 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
                 <h2 id="performPrice">RM </h2>
               </div>
             </div>
-            <button class="subt" onclick=completeReservation()>Submit</button>
-            <button class="rst">Reset</button>
         </div>
       </div>
     </div>
+    <div class="popup1 center">
+                <div class="icon">
+                    <i class="fa fa-check" id="tick"></i>
+                </div>
+                <div class="title">
+                    Successfully!!
+                </div>
+<div class="description1">
+                    You had already make an reservation as well. Wait for the troupe reposnse. Remember to check your booking on "My Booking". Once anything update the notification will pop up.
+                </div>
+<div class="dismiss-btn">
+                    <button id="dismiss-popup-btn">
+                        Dismiss
+                    </button>
+                </div>
+            </div>
+            <div class="center">
+                <button id="open-popup-btn" class="subt" onclick=completeReservation()>
+                    Submit
+                </button>
+            </div>
+            <button class="rst">Reset</button>
     <?php include "./footer.php" ?>
   </body>
 </html>
@@ -221,17 +247,21 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
 
   function completeReservation(){
 
-    
-
     var xmlhttp=new XMLHttpRequest();
     xmlhttp.open("POST","ajaxCreateReserv.php",false);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("troupeId="+<?php echo $_GET['id'] ?>+"&inviterId="+<?php echo $_SESSION['characterId']?>+
                 "&performDate="+$("#dateReserve").val()+"&performTime="+$("#time").val()+"&performState="+
                  $("#state").val()+"&performDistrict="+$("#district").val()+"&performAddress="+$("#address").val()+"");
-    if(xmlhttp.responseText == "Success")
-      alert("Reserve success");
-    else
+    if(xmlhttp.responseText == "Success"){
+      document.getElementsByClassName("popup1")[0].classList.add("active");
+      document.getElementById("open-popup-btn").disabled = true;
+    }
+      else
       alert(xmlhttp.responseText);
   }
+
+      document.getElementById("dismiss-popup-btn").addEventListener("click", function(){
+      document.getElementsByClassName("popup1")[0].classList.remove("active");
+      });
 </script>

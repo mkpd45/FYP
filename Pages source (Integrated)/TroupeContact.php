@@ -11,26 +11,9 @@
 </head>
 <body>
 <?php
-     session_start();
+    include "Troupe-side.php";
 ?>
-<header class="header">    
-    <span id="troupe-contact">Contact Us</span>
-</header>
 
-<div class="side-menu-bar">
-    <span style="display:block;font-size: 2rem; color:pink;text-align:center;font-weight: bold;">Welcome:</span>
-    <img src="../Assets/Images/Troupe/liondance2.jpg" width="180px" height="100px" alt="">
-    <span style="display:block;font-size: 2rem; color:var(--pearl);text-align:center;">Kung Seng Kung Lion Dance Troupe</span>
-    <br>
-    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
-    <div class="menu-container">
-    <a href="TroupeHome.php" class="menu">Home</a>
-    <a href="TroupeBooking.php" class="menu">Booking List</a>
-    <a href="TroupeProfile.php" class="menu">Troupe Profile</a>
-    <a href="" class="menu">Notification</a>
-    <a href="TroupeContact.php" class="menu">Contact Us</a>
-    </div>
-</div>
 
 <section class="contact">
 

@@ -21,9 +21,10 @@ if(!empty($_SESSION['userRole'])){
     else
         include "./userHeader.php";
 }
-else
-include "./header.php";
-include "DBConfig.php";
+else{
+    include "./header.php";
+    include "DBConfig.php";
+    }
 ?>
 
 <?php

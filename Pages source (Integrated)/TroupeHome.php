@@ -7,14 +7,22 @@
     <title>Troupe Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="css/troupehome.css">
+    <link rel="stylesheet" href="../css/troupehome.css">
 </head>
 <body>
-<?php include "./Troupe-side.php" ?>
+<?php 
+include "./Troupe-side.php"; 
+include "DBConfig.php";
+?>
+<?php
+$fetchTInfo = "SELECT * FROM troupes WHERE troupeId = {$_SESSION['characterId']};";
+$infoResult = mysqli_query($dbc, $fetchTInfo);
+while($rowInfo = mysqli_fetch_assoc($infoResult))
+{?>
 <div class="container">
     <div class="profile-header">
         <div class="profile-img">
-            <img src="image/home-bg1.png" width="200" alt="">
+            <img src="<?php echo $rowInfo['troupeImage']; ?>" width="200" height="100" alt="">
         </div>
         <div class="profile-nav-info">
             <h3 class="user-name">LKL Lion Dance Troupe</h3>
@@ -34,6 +42,7 @@
                     <h1>Introduction</h1>
                     <p class="bio">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima ipsa rem eum? Hic, modi blanditiis! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa a temporibus nesciunt harum sapiente animi sunt soluta totam vitae qui! Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit eum perferendis quod ullam ipsam est numquam eligendi eveniet aliquam dicta, repellendus mollitia, distinctio illo molestiae labore? Recusandae esse doloribus quam.</p>
                 </div>       
+                <?php } mysqli_free_result($infoResult);?>
                 <hr class="hr1">
                 <div class="performance">
                     <h1>Performance</h1>
@@ -70,30 +79,30 @@
             <br><br>
             <!-- Image Slider Start -->
             <div class="slider1">                
-                <h1>Our Activity</h1>
-                    <div class="slide active">
-                        <img src="image/liondance1.jpg" alt="">
-                        <div class="info">
-                            <h2>LKL Lion Dance Troupe</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa itaque modi illo eius quaerat beatae! Non unde minus est, id eos facilis, ducimus saepe velit inventore iusto nisi beatae rerum.</p>
-                        </div>
-                    </div>
+                <h1>Our Activities</h1>
+                <?php
+                $imgNum = 1; 
+                $fetchImages = "SELECT I.location FROM images I, troupes T WHERE T.troupeId = I.troupeId AND I.troupeId = {$_SESSION['characterId']};";
 
-                    <div class="slide">
-                        <img src="image/liondance2.jpg" alt="">
-                        <div class="info">
-                            <h2>LKL Lion Dance Troupe</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa itaque modi illo eius quaerat beatae! Non unde minus est, id eos facilis, ducimus saepe velit inventore iusto nisi beatae rerum.</p>
-                        </div>
-                    </div>
+                $result = mysqli_query($dbc, $fetchImages);
+                $movNum = mysqli_affected_rows($dbc);
+                while($row = mysqli_fetch_assoc($result)){
+                    if($imgNum == 1){
+                    echo "<div class='slide active'>";
+                    $imgNum = 0;
+                    }
+                    else
+                    echo "<div class='slide'>";
 
-                    <div class="slide">
-                        <img src="image/liondance3.jpg" alt="">
-                        <div class="info">
-                            <h2>LKL Lion Dance Troupe</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa itaque modi illo eius quaerat beatae! Non unde minus est, id eos facilis, ducimus saepe velit inventore iusto nisi beatae rerum.</p>
-                        </div>
-                    </div>
+                    echo "<img src='{$row['location']}' alt=''>";
+                    echo "<div class='info'>";
+                    echo "<h2>LKL Lion Dance Troupe</h2>";
+                    echo "<p>Lorem ipsum dolor sit inventore iusto nisi beatae rerum.</p>";
+                    echo "</div>";
+                    echo "</div>";
+                }
+                mysqli_free_result($result);
+                ?>
 
                     <div class="navigation">
                         <i class="fas fa-chevron-left prev-btn"></i>
@@ -101,48 +110,58 @@
                     </div>
 
                     <div class="navigation-visibility">
-                        <div class="slide-icon active"></div>
-                        <div class="slide-icon"></div>
-                        <div class="slide-icon"></div>
+                        <?php
+                        $movCount = 1; 
+                        while($movNum > 0){
+                            if($movCount == 1){
+                            echo "<div class='slide-icon active'></div>";
+                                $movCount = 0;
+                        }
+                            else
+                            echo "<div class='slide-icon'></div>";
+                            --$movNum;
+                        }
+                        ?>
                     </div>
             </div>
             <!-- Image Slider End -->
             <div class="slideshow-container">
                     <br><br>
                     <h1>Our Videos</h1>
-                    <div class="mySlides fade">
-                        <video id="player" playsinline controls data-poster="/path/to/poster.jpg " width="1000" height="500">
-	                    <source src="video/video_liondance1.mp4" type="video/mp4" />
-	                    </video>
-                        <div class="text">Segamat New Year Celebration</div>
-                    </div>
-
-                    <div class="mySlides fade">
-                        <video id="player" playsinline controls data-poster="/path/to/poster.jpg " width="1000" height="500">
-	                    <source src="video/video_liondance1.mp4" type="video/mp4" />
-	                    </video>
-                        <div class="text">Caption Two</div>
-                    </div>
-
-                    <div class="mySlides fade">
-                       <video id="player" playsinline controls data-poster="/path/to/poster.jpg " width="1000" height="500">
-                       <source src="video/video_liondance1.mp4" type="video/mp4" />
-	                   </video>
-                       <div class="text">Caption Three</div>
-                    </div>
+                    <?php
+                    $fetchVideos = "SELECT V.location FROM videos V, troupes T WHERE T.troupeId = V.troupeId AND V.troupeId = {$_SESSION['characterId']};";
+    
+                    $videoResult = mysqli_query($dbc, $fetchVideos);
+                    $dotNum = mysqli_affected_rows($dbc);
+                    while($videoRow = mysqli_fetch_assoc($videoResult)){
+    
+                        echo "<div class='mySlides fade'>";
+                        echo "<video id='player' playsinline controls data-poster='/path/to/poster.jpg' width='1000' height='500'>";
+	                    echo "<source src='{$videoRow['location']}' type='video/mp4' />";
+	                    echo "</video>";
+                        echo "<div class='text'>Segamat New Year Celebration</div>";
+                        echo "</div>";
+                    }
+                    mysqli_free_result($videoResult);
+                    mysqli_close($dbc);
+                    ?>
 
                     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                     <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
                     </div>
-                    <br>
-
-                    <div style="text-align:center">
-                        <span class="dot" onclick="currentSlide(1)"></span> 
-                        <span class="dot" onclick="currentSlide(2)"></span> 
-                        <span class="dot" onclick="currentSlide(3)"></span> 
+                    <div style="text-align:center;margin-bottom:10px">
+                        <?php
+                        $slideNum = 1;
+                        while($dotNum != 0){
+                            echo '<span class="dot" onclick="currentSlide('.$slideNum.')"></span>';
+                            $slideNum += 1;
+                            $dotNum -= 1;
+                        }
+                        ?>
                     </div>
-            </div>
+         
+                </div>  
         </div>
     </div>
 </div>

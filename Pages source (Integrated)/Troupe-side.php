@@ -33,6 +33,14 @@
 <body>
 <?php
      session_start();
+    if(empty($_SESSION['userRole']) || $_SESSION['userRole'] != "Troupe")
+    header("Location: Home.php");
+
+
+     if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        session_unset();
+        header("Location: Home.php");
+    }
 ?>
 <header class="header">    
     <span id="troupe-name">HOME</span>
@@ -259,7 +267,8 @@
         <span class="slider round"></span>
     </label>
     </div>
-    <a href="#" class="menu" id="logout">Logout</a>
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"><a class="menu" id="logout"><button type="submit" style="color:#FFEFD5;background-color:transparent;font-size:2.5rem">Logout</button></a></form>
+    
 </div>
 
 <script src="../js/script.js"></script>
