@@ -8,12 +8,22 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <!--custom css file link-->
-<link rel="stylesheet" href="css/TWU.css">
+<link rel="stylesheet" href="../css/TWU.css">
 
 </head>
 
 <body>
-<?php include "./testing.php" ?>
+<?php 
+session_start();
+
+if(!empty($_SESSION['userRole'])){
+    if($_SESSION['userRole'] == "Troupe")
+        header("Location: TroupeProfile.php");
+    else
+        include "./userHeader.php";
+}
+else
+include "./header.php";?>
 
 <h1 class="heading1">
         <span>J</span>
@@ -28,7 +38,7 @@
     <section class="join-us">
 
         <div class="image">
-            <img src="Assets/Images/Web/join-us1.jpg" width="300px" height="600px" alt="">
+            <img src="../Assets/Images/Web/join-us1.jpg" width="300px" height="600px" alt="">
         </div>
 
         <div class="content">
@@ -54,7 +64,7 @@
         </div>
 
         <div class="image">
-            <img src="Assets/Images/Web/join-us2.jpg" width="300px" height="600px" alt="">
+            <img src="../Assets/Images/Web/join-us2.jpg" width="300px" height="600px" alt="">
         </div>
 
     </section>

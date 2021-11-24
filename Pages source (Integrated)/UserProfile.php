@@ -51,7 +51,7 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
         <div class="profile-nav-info">
             <h3 class="user-name"><?php echo $rowInfo['firstname']."&nbsp;".$rowInfo['lastname'] ?></h3>
             <div class="address">
-                <p class="city"><?php echo $rowInfo['city'] ?></p>
+                <p class="city"><?php echo $rowInfo['district'] ?></p>
                 <span class="state"><?php echo $rowInfo['homeState'] ?></span>
             </div>
         </div>

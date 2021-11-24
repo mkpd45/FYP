@@ -36,7 +36,7 @@ $result = mysqli_query($dbc, $query);
                 <td><input type='text' value='{$row['description']}'></td>
                 <td><input type='text' value='{$row['performService']}'></td>
                 <td><input type='text' value='{$row['price']}'></td>
-                <td><button class='btn'>Edit</button></td>
+                <td><button class='btn' onclick=popup({$row['performId']}) >Edit</button></td>
                 <td><i class='delete-btn fas fa-times-circle' id='{$row['performId']}'></i></td>
                     </tr>";
             }

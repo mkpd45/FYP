@@ -32,203 +32,58 @@
             <div class="profile-history tab">
                 <div class="nav1">
                     <div class="row"><h1>History</h1>
-                    <a href="#"  onclick="loadDoc()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <!-- customer image -->
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                    <?php
+                        include "DBConfig.php";
+                        $fetchQ = "SELECT R.reservationID, T.troupeImage, I.firstname, R.performType, R.performService, R.performDate, R.performAddress, R.performDistrict, R.performState
+                                   FROM reservations R, troupes T, inviters I
+                                   WHERE R.inviterId = I.inviterId AND R.troupeId = T.troupeId AND T.troupeId = {$_SESSION['characterId']};";
+                        
+                        $allResult = mysqli_query($dbc, $fetchQ);
+
+                        while($allRow = mysqli_fetch_assoc($allResult)){
+                    echo "<a href='#'  onclick='loadDoc({$allRow['reservationID']})'>
+                    <div class='column'>
+                        <div class='grid-item'>
+                            <div class='content-1'>
+                                <!-- customer image -->
+                                <img src='{$allRow['troupeImage']}' width='100px' alt=''>
                             </div>
                         </div>
-                    </a>
-                    <a href="#"  onclick="loadDoc()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                        <div class='grid-item'>
+                            <div class='content-2'>
+                                <h2>Customer Name</h2><br><br><br>
+                                <label for='cust-name'>{$allRow['firstname']}</label>
                             </div>
                         </div>
-                    </a>
-                    <a href="#"  onclick="loadDoc()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                        <div class='grid-item'>
+                            <div class='content-3'>
+                                <h2>Performance Type</h2><br><br><br>
+                                <label for='cust-type'>{$allRow['performType']}</label>
                             </div>
                         </div>
-                    </a>
-                    <a href="#"  onclick="loadDoc()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                        <div class='grid-item'>
+                            <div class='content-4'>
+                                <h2>Performance Service</h2><br><br><br>
+                                <label for='cust-service'>{$allRow['performService']}</label>
                             </div>
                         </div>
-                    </a>
-                    <a href="#"  onclick="loadDoc()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <!-- customer image -->
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                        <div class='grid-item'>
+                            <div class='content-5'>
+                                <h2>Booking date</h2><br><br><br>
+                                <label for='cust-date'>{$allRow['performDate']}</label>
                             </div>
                         </div>
-                    </a>
+                        <div class='grid-item'>
+                            <div class='content-6'>
+                                <h2>Booking Venue</h2><br><br><br>
+                                <label for='cust-address'>{$allRow['performAddress']}, {$allRow['performDistrict']}, {$allRow['performState']}.</label>
+                            </div>
+                        </div>
+                    </div>
+                </a>";
+                        }
+                        mysqli_free_result($allResult);
+                        ?>
                 </div>
             </div>
         </div>
@@ -237,813 +92,231 @@
                     <div class="right-side">
                     <div class="nav1">
                         <div class="row"><h1>All</h1>
-                        <a href="#"  onclick="loadDoc()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <!-- customer image -->
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                    <?php
+                        $fetchQ = "SELECT R.reservationID, T.troupeImage, I.firstname, R.performType, R.performService, R.performDate, R.performAddress, R.performDistrict, R.performState
+                                   FROM reservations R, troupes T, inviters I
+                                   WHERE R.inviterId = I.inviterId AND R.troupeId = T.troupeId AND T.troupeId = {$_SESSION['characterId']};";
+                        
+                        $allResult = mysqli_query($dbc, $fetchQ);
+
+                        while($allRow = mysqli_fetch_assoc($allResult)){
+                    echo "<a href='#'  onclick='loadDoc({$allRow['reservationID']})'>
+                    <div class='column'>
+                        <div class='grid-item'>
+                            <div class='content-1'>
+                                <!-- customer image -->
+                                <img src='{$allRow['troupeImage']}' width='100px' alt=''>
                             </div>
                         </div>
-                    </a>
-                    <a href="#"  onclick="loadDoc()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                        <div class='grid-item'>
+                            <div class='content-2'>
+                                <h2>Customer Name</h2><br><br><br>
+                                <label for='cust-name'>{$allRow['firstname']}</label>
                             </div>
                         </div>
-                    </a>
-                    <a href="#"  onclick="loadDoc()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                        <div class='grid-item'>
+                            <div class='content-3'>
+                                <h2>Performance Type</h2><br><br><br>
+                                <label for='cust-type'>{$allRow['performType']}</label>
                             </div>
                         </div>
-                    </a>
-                    <a href="#"  onclick="loadDoc()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                        <div class='grid-item'>
+                            <div class='content-4'>
+                                <h2>Performance Service</h2><br><br><br>
+                                <label for='cust-service'>{$allRow['performService']}</label>
                             </div>
                         </div>
-                    </a>
-                    <a href="#"  onclick="loadDoc()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <!-- customer image -->
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                        <div class='grid-item'>
+                            <div class='content-5'>
+                                <h2>Booking date</h2><br><br><br>
+                                <label for='cust-date'>{$allRow['performDate']}</label>
                             </div>
                         </div>
-                    </a>
+                        <div class='grid-item'>
+                            <div class='content-6'>
+                                <h2>Booking Venue</h2><br><br><br>
+                                <label for='cust-address'>{$allRow['performAddress']}, {$allRow['performDistrict']}, {$allRow['performState']}.</label>
+                            </div>
+                        </div>
+                    </div>
+                </a>";
+                        }
+                        mysqli_free_result($allResult);
+                        ?>
+                    
                         </div>
                     </div>
                     </div>
                 </div>
                 <div class="profile-pending tab">
                     <div class="nav1">
-                        <div class="row"><h1>Pending</h1>
-                        <a href="#"  onclick="loadDoc2()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <!-- customer image -->
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                        <div class="row"><h1>Pending</h1><?php
+                        $fetchQ = "SELECT R.reservationID, T.troupeImage, I.firstname, R.performType, R.performService, R.performDate, R.performAddress, R.performDistrict, R.performState
+                                   FROM reservations R, troupes T, inviters I
+                                   WHERE R.inviterId = I.inviterId AND R.troupeId = T.troupeId AND T.troupeId = {$_SESSION['characterId']} AND R.status = 'Pending';";
+                        
+                        $allResult = mysqli_query($dbc, $fetchQ);
+
+                        while($allRow = mysqli_fetch_assoc($allResult)){
+                    echo "<a href='#' onclick='loadDoc2({$allRow['reservationID']})'>
+                    <div class='column'>
+                        <div class='grid-item'>
+                            <div class='content-1'>
+                                <!-- customer image -->
+                                <img src='{$allRow['troupeImage']}' width='100px' alt=''>
                             </div>
                         </div>
-                    </a>
-                    <a href="#"  onclick="loadDoc2()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                        <div class='grid-item'>
+                            <div class='content-2'>
+                                <h2>Customer Name</h2><br><br><br>
+                                <label for='cust-name'>{$allRow['firstname']}</label>
                             </div>
                         </div>
-                    </a>
-                    <a href="#"  onclick="loadDoc2()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                        <div class='grid-item'>
+                            <div class='content-3'>
+                                <h2>Performance Type</h2><br><br><br>
+                                <label for='cust-type'>{$allRow['performType']}</label>
                             </div>
                         </div>
-                    </a>
-                    <a href="#"  onclick="loadDoc2()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                        <div class='grid-item'>
+                            <div class='content-4'>
+                                <h2>Performance Service</h2><br><br><br>
+                                <label for='cust-service'>{$allRow['performService']}</label>
                             </div>
                         </div>
-                    </a>
-                    <a href="#"  onclick="loadDoc2()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <!-- customer image -->
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                        <div class='grid-item'>
+                            <div class='content-5'>
+                                <h2>Booking date</h2><br><br><br>
+                                <label for='cust-date'>{$allRow['performDate']}</label>
                             </div>
                         </div>
-                    </a>
+                        <div class='grid-item'>
+                            <div class='content-6'>
+                                <h2>Booking Venue</h2><br><br><br>
+                                <label for='cust-address'>{$allRow['performAddress']}, {$allRow['performDistrict']}, {$allRow['performState']}.</label>
+                            </div>
+                        </div>
+                    </div>
+                </a>";
+                        }
+                        mysqli_free_result($allResult);
+                        ?>
+                    
                         </div>
                     </div>
                 </div>
                 <div class="profile-accepted tab">
                 <div class="nav1">
                         <div class="row"><h1>Accepted</h1>
-                        <a href="#"  onclick="loadDoc()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <!-- customer image -->
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                        <?php
+ $fetchQ = "SELECT R.reservationID, T.troupeImage, I.firstname, R.performType, R.performService, R.performDate, R.performAddress, R.performDistrict, R.performState
+                                   FROM reservations R, troupes T, inviters I
+                                   WHERE R.inviterId = I.inviterId AND R.troupeId = T.troupeId AND T.troupeId = {$_SESSION['characterId']} AND R.status = 'Accepted';";
+                        
+                        $allResult = mysqli_query($dbc, $fetchQ);
+
+                        while($allRow = mysqli_fetch_assoc($allResult)){
+                    echo "<a href='#' onclick='loadDoc({$allRow['reservationID']})'>
+                    <div class='column'>
+                        <div class='grid-item'>
+                            <div class='content-1'>
+                                <!-- customer image -->
+                                <img src='{$allRow['troupeImage']}' width='100px' alt=''>
                             </div>
                         </div>
-                    </a>
-                    <a href="#"  onclick="loadDoc()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                        <div class='grid-item'>
+                            <div class='content-2'>
+                                <h2>Customer Name</h2><br><br><br>
+                                <label for='cust-name'>{$allRow['firstname']}</label>
                             </div>
                         </div>
-                    </a>
-                    <a href="#"  onclick="loadDoc()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                        <div class='grid-item'>
+                            <div class='content-3'>
+                                <h2>Performance Type</h2><br><br><br>
+                                <label for='cust-type'>{$allRow['performType']}</label>
                             </div>
                         </div>
-                    </a>
-                    <a href="#"  onclick="loadDoc()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                        <div class='grid-item'>
+                            <div class='content-4'>
+                                <h2>Performance Service</h2><br><br><br>
+                                <label for='cust-service'>{$allRow['performService']}</label>
                             </div>
                         </div>
-                    </a>
-                    <a href="#"  onclick="loadDoc()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <!-- customer image -->
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                        <div class='grid-item'>
+                            <div class='content-5'>
+                                <h2>Booking date</h2><br><br><br>
+                                <label for='cust-date'>{$allRow['performDate']}</label>
                             </div>
                         </div>
-                    </a>
+                        <div class='grid-item'>
+                            <div class='content-6'>
+                                <h2>Booking Venue</h2><br><br><br>
+                                <label for='cust-address'>{$allRow['performAddress']}, {$allRow['performDistrict']}, {$allRow['performState']}.</label>
+                            </div>
+                        </div>
+                    </div>
+                </a>";
+                        }
+                        mysqli_free_result($allResult);
+                        ?>
                         </div>
                     </div>
                 </div>
                 <div class="profile-canceled tab">
                 <div class="nav1">
                         <div class="row"><h1>Canceled</h1>
-                        <a href="#"  onclick="loadDoc()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <!-- customer image -->
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                        <?php
+ $fetchQ = "SELECT R.reservationID, T.troupeImage, I.firstname, R.performType, R.performService, R.performDate, R.performAddress, R.performDistrict, R.performState
+                                   FROM reservations R, troupes T, inviters I
+                                   WHERE R.inviterId = I.inviterId AND R.troupeId = T.troupeId AND T.troupeId = {$_SESSION['characterId']} AND R.status = 'Canceled';";
+                        
+                        $allResult = mysqli_query($dbc, $fetchQ);
+
+                        while($allRow = mysqli_fetch_assoc($allResult)){
+                    echo "<a href='#' onclick='loadDoc({$allRow['reservationID']})'>
+                    <div class='column'>
+                        <div class='grid-item'>
+                            <div class='content-1'>
+                                <!-- customer image -->
+                                <img src='{$allRow['troupeImage']}' width='100px' alt=''>
                             </div>
                         </div>
-                    </a>
-                    <a href="#"  onclick="loadDoc()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                        <div class='grid-item'>
+                            <div class='content-2'>
+                                <h2>Customer Name</h2><br><br><br>
+                                <label for='cust-name'>{$allRow['firstname']}</label>
                             </div>
                         </div>
-                    </a>
-                    <a href="#"  onclick="loadDoc()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                        <div class='grid-item'>
+                            <div class='content-3'>
+                                <h2>Performance Type</h2><br><br><br>
+                                <label for='cust-type'>{$allRow['performType']}</label>
                             </div>
                         </div>
-                    </a>
-                    <a href="#"  onclick="loadDoc()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                        <div class='grid-item'>
+                            <div class='content-4'>
+                                <h2>Performance Service</h2><br><br><br>
+                                <label for='cust-service'>{$allRow['performService']}</label>
                             </div>
                         </div>
-                    </a>
-                    <a href="#"  onclick="loadDoc()">
-                        <div class="column">
-                            <div class="grid-item">
-                                <div class="content-1">
-                                    <!-- customer image -->
-                                    <img src="Assets/Images/Web/home-bg1.png" width="100px" alt="">
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-2">
-                                    <h2>Customer Name</h2><br><br><br>
-                                    <label for="cust-name">Low Kuan Le</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-3">
-                                    <h2>Performance Type</h2><br><br><br>
-                                    <label for="cust-type">Cai Qing Lion dance</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-4">
-                                    <h2>Performance service</h2><br><br><br>
-                                    <label for="cust-service">Lion Dance Performance For Wedding Ceremony</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-5">
-                                    <h2>Booking date</h2><br><br><br>
-                                    <label for="cust-date">09/11/2021</label>
-                                </div>
-                            </div>
-                            <div class="grid-item">
-                                <div class="content-6">
-                                    <h2>Booking Venue</h2><br><br><br>
-                                    <label for="cust-address">No.150, Jalan Wang Ah Fok, Taman Wang Ah Fok, 80000, Segamat Johor.</label>
-                                </div>
+                        <div class='grid-item'>
+                            <div class='content-5'>
+                                <h2>Booking date</h2><br><br><br>
+                                <label for='cust-date'>{$allRow['performDate']}</label>
                             </div>
                         </div>
-                    </a>
+                        <div class='grid-item'>
+                            <div class='content-6'>
+                                <h2>Booking Venue</h2><br><br><br>
+                                <label for='cust-address'>{$allRow['performAddress']}, {$allRow['performDistrict']}, {$allRow['performState']}.</label>
+                            </div>
+                        </div>
+                    </div>
+                </a>";
+                        }
+                        mysqli_free_result($allResult);
+                        ?>
+                    
                         </div>
                     </div>
                 </div>
@@ -1052,7 +325,7 @@
 </div>
 <script src="js/script.js"></script>
 <script>
-    function loadDoc() {
+    function loadDoc(id) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -1060,11 +333,11 @@
       this.responseText;
     }
   };
-  xhttp.open("GET", "TroupeBookingDetail.php", true);
+  xhttp.open("GET", "TroupeBookingDetail.php?id="+id+"", true);
   xhttp.send();
 }
 
-function loadDoc1() {
+function loadDoc1(id) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -1072,11 +345,11 @@ function loadDoc1() {
       this.responseText;
     }
   };
-  xhttp.open("GET", "TroupeBooking.php", true);
+  xhttp.open("GET", "TroupeBooking.php?id="+id+"", true);
   xhttp.send();
 }
 
-function loadDoc2() {
+function loadDoc2(id) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -1084,7 +357,7 @@ function loadDoc2() {
       this.responseText;
     }
   };
-  xhttp.open("GET", "PendingPage.php", true);
+  xhttp.open("GET", "PendingPage.php?id="+id+"", true);
   xhttp.send();
 }
 </script>

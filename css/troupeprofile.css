@@ -789,4 +789,94 @@ th, td {
 
 #leave-reason{
   margin-top: 2rem;
-}    
+}
+
+.backdrop {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 999;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  display: none;
+}
+
+#popdiv {
+  height: 650px;
+  width: 710px;
+  background-color: white;
+  position: fixed;
+  top: 57%;
+  left: 55%;
+  transform: translateX(-50%) translateY(-50%);
+  padding: 30px;
+  color: black;
+}
+
+#popdiv .text{
+  font-size: 35px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+#popdiv .close-btn{
+  right: 15px;
+  top: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#popdiv .close-btn:hover{
+  color: var(--red);
+}
+
+#popdiv form{
+  margin-top: -20px;
+  z-index: 9999;
+}
+
+#popdiv form .data{
+  height: 45px;
+  width: 100%;
+  margin: 20px;
+  margin-bottom: 5rem;
+}
+#popdiv form .data textarea{
+  width: 100%;
+  font-size: 16px;
+}
+
+form .data label{
+  font-size: 18px;
+}
+form .data input{
+  height: 100%;
+  width: 100%;
+  padding-left: 10px;
+  font-size: 17px;
+  border: 1px solid silver;
+}
+form .data input:focus{
+  border-color: var(--red);
+  border-bottom-width: 2px;
+}
+
+form .btn{
+  margin: 30px 0;
+  height: 45px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+form .btn button{
+  height: 100%;
+  width: 100%;
+  color: white;
+  font-size: 24px;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: none;
+}

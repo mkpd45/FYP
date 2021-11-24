@@ -10,7 +10,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 include "DBConfig.php";
 
-$fetchQ = "SELECT title, body, theStatus, purpose FROM notifications WHERE receiverId = '{$_SESSION['characterId']}' AND theStatus = 'UNREAD';";
+$fetchQ = "SELECT title, body, theStatus, purpose FROM notifications WHERE receiverId = '{$_SESSION['characterId']}' AND characterRole = 'Inviter' AND theStatus = 'UNREAD';";
 
 $result = mysqli_query($dbc, $fetchQ);
 

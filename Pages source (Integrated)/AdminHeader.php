@@ -138,7 +138,7 @@
       </div>
       <div class="profile">
         <div class="icon_wrap">
-          <img src="Assets/Images/Web/admin1.png" alt="profile_pic">
+          <img src="../Assets/Images/Web/admin1.png" alt="profile_pic">
           <span class="name">John Alex</span>
           <i class="fas fa-chevron-down"></i>
         </div>

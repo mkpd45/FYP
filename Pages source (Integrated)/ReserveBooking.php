@@ -131,6 +131,7 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
                     <option value="none">Select Performance Service</option>
                 </select>
             </div>
+            <span class="msg" id="dateMsg"></span>
             <div class="inpbox">
               <input type="date" id="dateReserve" placeholder="Date" min="<?php echo(date("Y-m-d",strtotime("+2 week"))); ?>" max="<?php echo(date("Y-m-d",strtotime("+3 months"))); ?>">          
             </div>
@@ -246,7 +247,52 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
   }
 
   function completeReservation(){
+    $("#typeMsg").html("");
+    $("#serviceMsg").html("");
+    $("#dateMsg").html("");
+    $("#timeMsg").html("");
+    $("#stateMsg").html("");
+    $("#districtValue").html("");
+    $("#addressMsg").html("");
 
+    var bool = 1;
+
+    var typeValue = $("#typeSelect").val();
+    var serviceValue = $("#serviceSelect").val();
+    var dateValue = $("#dateReserve").val();
+    var timeValue = $("#time").val();
+    var stateValue = $("#state").val();
+    var districtValue = $("#district").val();
+    var addressValue = $("#address").val();
+
+    if(typeValue == "none")
+   { $("#typeMsg").html("Please select the performance type.");
+    bool = 0;}
+
+    if(serviceValue == "none")
+    {$("#serviceMsg").html("Please select the performance service.");
+    bool = 0;}
+
+    if(dateValue == "")
+   { $("#dateMsg").html("Please select the performance date.");
+    bool = 0;}
+
+    if(timeValue == "none")
+   { $("#timeMsg").html("Please select the performance time.");
+    bool = 0;}
+
+    if(stateValue == "none")
+   { $("#stateMsg").html("Please select the state of performance location.");
+    bool = 0;}
+
+    if(districtValue == "none")
+    {$("#districtMsg").html("Please select the district of performance location.");
+    bool = 0;}
+
+    if(addressValue == "")
+    {$("#addressMsg").html("Please select the address of performance location.");
+    bool = 0;}
+    if(bool == 1){
     var xmlhttp=new XMLHttpRequest();
     xmlhttp.open("POST","ajaxCreateReserv.php",false);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -264,4 +310,5 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
       document.getElementById("dismiss-popup-btn").addEventListener("click", function(){
       document.getElementsByClassName("popup1")[0].classList.remove("active");
       });
+  }
 </script>

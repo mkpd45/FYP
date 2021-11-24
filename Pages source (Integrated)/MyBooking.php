@@ -193,7 +193,7 @@
                         <?php
                         $fetchQ = "SELECT R.reservationID, T.troupeImage, T.troupeName, T.contactNum, R.performDate 
                                    FROM reservations R, troupes T
-                                   WHERE R.troupeId = T.troupeId AND R.status = 'Cancel' AND R.inviterId = {$_SESSION['characterId']};";
+                                   WHERE R.troupeId = T.troupeId AND R.status = 'Canceled' AND R.inviterId = {$_SESSION['characterId']};";
                         
                         $cancelResult = mysqli_query($dbc, $fetchQ);
 

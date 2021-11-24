@@ -295,6 +295,11 @@ button.rst:hover {
     line-height: 60px;
 }
 
+.msg {
+  font-size: 1.7rem;
+  color: var(--pearl);
+}
+
 .popup1 .icon #tick{
     font-size: 30px;
     margin: 10px;

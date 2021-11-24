@@ -224,7 +224,7 @@
                                     <td><input type='text' value='{$row['description']}'  onkeypress='return false'></td>
                                     <td><input type='text' value='{$row['performService']}'  onkeypress='return false'></td>
                                     <td><input type='text' value='{$row['price']}'  onkeypress='return false'></td>
-                                    <td><button class='btn'>Edit</button></td>
+                                    <td><button class='btn' onclick=popup({$row['performId']})>Edit</button></td>
                                     <td><i class='delete-btn fas fa-times-circle' id='{$row['performId']}'></i></td>
                                         </tr>";
                                 }
@@ -294,10 +294,53 @@
                 </div>
             </div>
         </div>
-        <script src="../js/script.js"></script>
+        <div class="backdrop">
+    <div id="popdiv">
+        <label class="close-btn fas fa-times" onclick="popout()" title="close"></label>
+        <div class="text">
+            Edit performance
+        </div>
+<form action="#">
+                    <div class="data">
+                        <label for="lbl-performance-type" class="lbl-performance-type"><b>Performance Type:</b></label>
+                        <select class="performance-type">
+                            <option value="none"></option>
+                            <option>Acrobatic Lion Dance</option>
+                            <option>Cai Qing Lion Dance</option>
+<option>Traditional Lion Dance</option>
+                            <option>24 Festive Drums</option>
+                        </select>
+                    </div>
+                    <div class="data" style="margin-bottom:10rem">
+                        <label><b>Description: </b></label>
+                        <textarea name="performance-description" class="performance-description" cols="30" rows="4"></textarea>
+                    </div>
+                    <div class="data" >
+                        <label for="lbl-performance-service" class="lbl-performance-service"><b>Performance Service:</b></label>
+                        <select class="performance-service">
+                            <option value="none"></option>
+                            <option>Lion Dance Performance For House Blessing</option>
+                            <option>Lion Dance Performance For Corporate Event</option>
+<option>Lion Dance Performance For Wedding Ceremony</option>
+                            <option>Lion Dance For Grand Opening Ceremony</option>
+                            <option>Lion Dance Performance For Gala Event</option>
+                            <option>Lion Dance Performance For Launch Event</option>
+                        </select>
+                    </div>
+<div class="data">
+                        <label><b>Price: </b></label>
+                        <input type="text" required>
+                    </div>
+                    <div class="btn">
+                        <div class="inner"></div>
+                        <button type="submit" class="submit">confirm</button>
+                    </div>
+        </form>
+    </div>
+</div>    
 </body>
 </html>
-
+<script src="../js/script.js"></script>
 <?php echo "<script> 
             document.getElementById('posts').click(); 
             document.getElementById('otherType').style.display = 'none';
@@ -369,5 +412,12 @@ function deleteImg(id){
                 xmlhttp.send();
     }
 
-</script>
+    function popup(){
+                $(".backdrop").fadeTo(200, 1);
+            }
 
+    function popout(){
+                $(".backdrop").fadeOut(200);
+            }
+
+</script>

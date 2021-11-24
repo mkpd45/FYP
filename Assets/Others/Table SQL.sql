@@ -35,6 +35,8 @@ Union
 
 CREATE TABLE Reservations (
 reservationID INT(10) Unsigned AUTO_INCREMENT PRIMARY KEY,
+performType VARCHAR(60) NOT NULL,
+performService VARCHAR(60) NOT NULL,
 performDate DATE NOT NULL,
 performTime VARCHAR(10) NOT NULL,
 performState VARCHAR(20) NOT NULL,

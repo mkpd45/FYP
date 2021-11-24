@@ -1070,7 +1070,7 @@
 </div>
 <script src="js/script.js"></script>
 <script>
-    function loadDoc() {
+    function loadDoc(id) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -1078,11 +1078,11 @@
       this.responseText;
     }
   };
-  xhttp.open("GET", "TroupeBookingDetail.php", true);
+  xhttp.open("GET", "TroupeBookingDetail.php?id="+id+"", true);
   xhttp.send();
 }
 
-function loadDoc1() {
+function loadDoc1(id) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -1090,11 +1090,11 @@ function loadDoc1() {
       this.responseText;
     }
   };
-  xhttp.open("GET", "TroupeBooking.php", true);
+  xhttp.open("GET", "TroupeBooking.php?id="+id+"", true);
   xhttp.send();
 }
 
-function loadDoc2() {
+function loadDoc2(id) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -1102,7 +1102,7 @@ function loadDoc2() {
       this.responseText;
     }
   };
-  xhttp.open("GET", "PendingPage.php", true);
+  xhttp.open("GET", "PendingPage.php?id="+id+"", true);
   xhttp.send();
 }
 </script>
