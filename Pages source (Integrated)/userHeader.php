@@ -7,7 +7,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     session_unset();
     header("Location: Home.php");
 }
-
 include "DBConfig.php";
 
 $fetchQ = "SELECT title, body, theStatus, purpose FROM notifications WHERE receiverId = '{$_SESSION['characterId']}' AND characterRole = 'Inviter' AND theStatus = 'UNREAD';";
@@ -76,7 +75,7 @@ $notifyCount = mysqli_affected_rows($dbc);
       <div class="profile">
         <div class="icon_wrap">
           <img src="https://i.imgur.com/x3omKbe.png" alt="profile_pic">
-          <span class="name">Low Kuan Le</span>
+          <span class="name"><?php echo  $_SESSION['name']; ?></span>
           <i class="fas fa-chevron-down"></i>
         </div>
 

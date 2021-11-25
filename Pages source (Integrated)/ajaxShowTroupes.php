@@ -25,7 +25,7 @@ else
         while($row = mysqli_fetch_assoc($result)){
             echo "<div class='box'>";
         echo "<div class='image'>";
-            echo "<a href='troupeDetails.php?id={$row['troupeId']}'><img src='{$row['troupeImage']}' alt=''></a>";
+            echo "<a href='troupeInfo.php?id={$row['troupeId']}'><img src='{$row['troupeImage']}' alt=''></a>";
         echo "</div>";
         echo "<div class='content'>";
             echo "<div class='icons'>";

@@ -8,7 +8,7 @@ $passw = $_GET['passw'];
 $emailMsg = "";
 $passwMsg = "";
 $emailFound = FALSE;
-$troupeEmail = "SELECT userRole, characterId, username, password FROM users; ";
+$troupeEmail = "SELECT userRole, nameUser, characterId, username, password FROM users; ";
 
 $result = mysqli_query($dbc,$troupeEmail);
 
@@ -18,6 +18,7 @@ while($row = mysqli_fetch_assoc($result)){
         if(strcmp($row['password'], $passw) == 0){
             $_SESSION['characterId'] = $row['characterId'];
             $_SESSION['userRole'] = $row['userRole'];
+            $_SESSION['name'] = $row['nameUser'];
             break;
         }
         else{
