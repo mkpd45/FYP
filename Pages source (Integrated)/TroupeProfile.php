@@ -244,7 +244,7 @@
                     <p class="p1">View and edit your account information below</p>
                         <div class="profile-edit1">
                             <button class="discard">discard</button>
-                            <button class="update">update info</button>
+                            <button class="update" disabled>update info</button>
                         </div>
                         <hr class="hr1">
                         <div class="profile-detail">
