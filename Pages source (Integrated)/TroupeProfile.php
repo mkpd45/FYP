@@ -174,28 +174,6 @@
                                     </div>
                                     </div>
                             </div>
-                            <!-- <div class="performance-detail-part2">
-                                <label for="lbl-performance-description" class="lbl-performance-description"><b>Description:</b></label>
-                                <textarea name="performance-description" class="performance-description" cols="30" rows="4"></textarea>
-                            </div>
-                            <br>
-                            <div class="performance-detail-part3">
-                                <label for="lbl-performance-service" class="lbl-performance-service"><b>Performance Service:</b></label>
-                                <select class="performance-service">
-                                    <option value="none"></option>
-                                    <option>Lion Dance Performance For House Blessing</option>
-                                    <option>Lion Dance Performance For Corporate Event</option>
-                                    <option>Lion Dance Performance For Wedding Ceremony</option>
-                                    <option>Lion Dance For Grand Opening Ceremony</option>
-                                    <option>Lion Dance Performance For Gala Event</option>
-                                    <option>Lion Dance Performance For Launch Event</option>
-                                </select>
-                            </div>
-                            <br>
-                            <div class="performance-detail-part4">                                        
-                                <label for="lbl-performance-pricing" class="lbl-performance-pricing"><b>Pricing (RM):</b></label>
-                                <input type="text" class="performance-pricing">
-                            </div> -->
                             <hr class="hr3">
                             <div class="performance-listing">
                                 <h1>Performance Listing</h1>
@@ -230,7 +208,7 @@
                                 }
                         
                                     mysqli_free_result($permResult);
-                                    mysqli_close($dbc);
+                                   
                             }
                                     ?>
                                 </table>
@@ -243,37 +221,53 @@
                     <h1>Profile Settings</h1>
                     <p class="p1">View and edit your account information below</p>
                         <div class="profile-edit1">
-                            <button class="discard">discard</button>
-                            <button class="update" disabled>update info</button>
+                            <button class="discard" id="discardBtn" disabled>Discard</button>
+                            <button class="update" id="updateBtn" disabled>Confirm</button>
                         </div>
+                        <?php 
+                        $fetchQ = "SELECT email, troupeName, city, troupeState, contactNum, address
+                                   FROM troupes WHERE troupeId = {$_SESSION['characterId']};";
+                        $result = mysqli_query($dbc, $fetchQ);
+
+                        while($iRow = mysqli_fetch_assoc($result)){
+                            
+                        
+                        ?>
                         <hr class="hr1">
                         <div class="profile-detail">
                             <h2 class="h2-header">Profile Details</h2>
                             <p class="p2">Update & Edit your profile information</p>
                             <div class="profile-detail-email">
                                 <h2>Login Email:</h2>
-                                <label for="profile-email">LKLliondance888@gmail.com</label>
+                                <label for="profile-email"><?php echo $iRow['email'];?></label>
                                 <p class="p3">Your Login email can't be changed</p>
                             </div>
                             <div class="profile-detail-part1">
                                 <label for="lbl-ld-name" class="lbl-ld-name"><b>Troupe Name:</b></label>
-                                <input type="text" class="profile-name" value="LKL Lion Dance Troupe" readonly>
+                                <input type="text" class="profile-name" id="profileName" oninput=checkChanges() value="<?php echo $iRow['troupeName'];?>">
                             </div>
                             <br>
                             <div class="profile-detail-part2">
                                 <label for="lbl-ld-district" class="lbl-ld-district"><b>District:</b></label>
-                                <input type="text" class="profile-district" value="Segamat" readonly>
+                                <input type="text" class="profile-district" id="profileCity" oninput=checkChanges() value="<?php echo $iRow['city'];?>">
                             </div>
                             <br>
                             <div class="profile-detail-part3">
                                 <label for="lbl-ld-state" class="lbl-ld-state"><b>State:</b></label>
-                                <input type="text" class="profile-state" value="Johor" readonly>
+                                <input type="text" class="profile-state" id="profileState" oninput=checkChanges() value="<?php echo $iRow['troupeState'];?>">
                             </div>
                             <br>
                             <div class="profile-detail-part4">
                                 <label for="lbl-ld-phone" class="lbl-ld-phone"><b>Phone No:</b></label>
-                                <input type="text" class="profile-phone" value="012-3456789" readonly>
+                                <input type="text" class="profile-phone" id="profileCNo" oninput=checkChanges() value="<?php echo $iRow['contactNum'];?>">
                             </div>
+                            <br>
+                            <div class="profile-detail-part5">
+                                <label for="lbl-ld-phone" class="lbl-ld-phone"><b>Address:</b></label>
+                                <input type="text" class="profile-phone" id="profileAddress" oninput=checkChanges() value="<?php echo $iRow['address'];?>">
+                            </div><?php
+                            }
+                            mysqli_free_result($result); ?>
                             <br>
                             <br>           
                             <hr class="hr3">
@@ -282,14 +276,15 @@
                             <p class="p3">Select a time that unable to serve and provided reason below.</p>
                                 <div class="leave-date">
                                     <label for="lbl-leave-date" class="lbl-leave-date">Date:</label>
-                                    <input type="date" placeholder="Date">
+                                    <input type="date" id="unDate" placeholder="Date">
                                     </div>
                                 <div class="leave-reason">
                                     <label for="lbl-reason" class="lbl-reason">Reason:</label>                                    
                                 </div>
                                 <textarea id="leave-reason" placeholder="Write the reason..." style="height:200px; width:600px; font-size:18px"></textarea><br>
-                                <button class="btn">Submit</button>
+                                <button id="addDateBtn">Submit</button>
                         </div>
+                            
                     </div>
                 </div>
             </div>
@@ -348,6 +343,39 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+
+document.getElementById("addDateBtn").addEventListener("click",function(){
+    
+    var xmlhttp= new XMLHttpRequest();
+    xmlhttp.open("GET","ajaxAddDate.php?date="+$("#unDate").val()+"&reason="+$("#leave-reason").val()+"",false);
+    xmlhttp.send();
+    if(xmlhttp.responseText == "Success")
+        alert("Added date");
+    else
+        alert("Added fail.");
+    })
+
+document.getElementById("updateBtn").addEventListener("click",function(){
+    
+    var xmlhttp= new XMLHttpRequest();
+    xmlhttp.open("GET","ajaxUpdateProfile.php?name="+$("#profileName").val()+"&city="+$("#profileCity").val()+
+                 "&state="+$("#profileState").val()+"&contact="+$("#profileCNo").val()+"&address="+$("#profileAddress").val()+"",false);
+    xmlhttp.send();
+    if(xmlhttp.responseText == "Success")
+        alert("Profile information updated");
+    else
+        alert("Update fail.");
+    })
+
+    document.getElementById("discardBtn").addEventListener("click",function(){
+        $("#profileName").val(name);
+        $("#profileCity").val(district);
+        $("#profileState").val(state);
+        $("#profileCNo").val(contactNum);
+        $("#profileAddress").val(address);
+        document.getElementById("discardBtn").disabled = true;
+        document.getElementById("updateBtn").disabled = true;
+    })
 
 function deleteImg(id){
         var xmlhttp=new XMLHttpRequest();
@@ -419,5 +447,41 @@ function deleteImg(id){
     function popout(){
                 $(".backdrop").fadeOut(200);
             }
+    
+    var name = $("#profileName").val();
+    var district = $("#profileCity").val();
+    var state = $("#profileState").val();
+    var contactNum = $("#profileCNo").val();
+    var address = $("#profileAddress").val();
 
+    function checkChanges(){
+        var changed = 0;
+        
+
+        if($("#profileName").val() != name)
+        changed = 1;
+        
+        if($("#profileCity").val() != district)
+        changed = 1;
+        
+        if($("#profileState").val() != state)
+        changed = 1;
+       
+        if($("#profileCNo").val() != contactNum)
+        changed = 1;
+       
+        if($("#profileAddress").val() != address)
+        changed = 1;
+        
+
+        if(changed == 1){
+        document.getElementById("discardBtn").disabled = false;
+        document.getElementById("updateBtn").disabled = false;
+        }
+        else{
+        document.getElementById("discardBtn").disabled = true;
+        document.getElementById("updateBtn").disabled = true;
+        }
+
+    }
 </script>

@@ -3,10 +3,10 @@
 
 <?php
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    session_unset();
-    header("Location: Home.php");
-}
+if($_SERVER['REQUEST_METHOD'] == 'POST' && !(isset($_POST['update_btn'])) && !(isset($_POST['discard_btn']))) {
+  session_unset();
+  header("Location: Home.php");
+} 
 include "DBConfig.php";
 
 $fetchQ = "SELECT title, body, theStatus, purpose FROM notifications WHERE receiverId = '{$_SESSION['characterId']}' AND characterRole = 'Inviter' AND theStatus = 'UNREAD';";

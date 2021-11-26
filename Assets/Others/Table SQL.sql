@@ -73,7 +73,8 @@ CREATE TABLE UnavailableDate(
 unDateId INT(10) Unsigned AUTO_INCREMENT PRIMARY KEY,
 dateSet date NOT NULL,
 reason VARCHAR(200) NULL,
-specificDay Boolean DEFAULT 0
+troupeId INT(10) Unsigned,
+CONSTRAINT FK_dateOwner FOREIGN KEY (troupeId) REFERENCES Troupes(troupeId)
 );
 
 CREATE TABLE Images(

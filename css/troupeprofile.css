@@ -305,7 +305,7 @@ textarea{
     height: 40px;
     position: absolute;
     right: 300px;
-    top: 5%;
+    top: 28%;
     transform: translateY(-50%);
     display: flex;
     justify-content: center;
@@ -323,22 +323,40 @@ textarea{
     cursor: pointer;
   }
 
-  .nav1 .profile-edit1 button:hover{
-    background:var(--red);
+  .nav1 .profile-edit1 .discard:enabled:hover{
+   border-color: var(--black);
+   color: var(--pearl);
   }
 
-  .nav1 .profile-edit1 .discard{
+  .nav1 .profile-edit1 .discard:disabled{
     background: var(--grey);
     border: 2px solid grey;
     color: grey;
   }
 
-  .nav1 .profile-edit1 .update{
-    background: grey;
-    border: 2px solid var(--grey);
-    color: var(--grey);
+  .nav1 .profile-edit1 .discard:enabled{
+    background: var(--red);
+    border: 2px solid grey;
+    color: black;
   }
 
+  .nav1 .profile-edit1 .update:disabled{
+    background: grey;
+    border: 2px solid var(--grey);
+    color: var(--black);
+  }
+
+  .nav1 .profile-edit1 .update:enabled{
+    color:var(--red);
+    border: 2px solid grey;
+    background-color: var(--pearl);
+  }
+
+  .nav1 .profile-edit1 .update:enabled:hover{
+    color:var(--black);
+    background-color: var(--pearl);
+    border-color: var(--red);
+  }
   .nav1{
     position: fixed;
     margin-top: 16rem;

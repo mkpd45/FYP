@@ -21,28 +21,34 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
 {?>
 <div class="container">
     <div class="profile-header">
-        <div class="profile-img">
-            <img src="<?php echo $rowInfo['troupeImage']; ?>" width="200" height="100" alt="">
+    <div class="profile-img">
+            <img src="<?php echo $rowInfo['troupeImage']; ?>" width="250" alt="">
         </div>
         <div class="profile-nav-info">
-            <h3 class="user-name">LKL Lion Dance Troupe</h3>
+            <h3 class="user-name"><?php echo $rowInfo['troupeName']; ?></h3>
             <div class="address">
-                <p class="city">Segamat</p>
-                <span class="state">Johor</span>
+                <p class="city"><?php echo $rowInfo['city']; ?></p>
+                <span class="state"><?php echo $rowInfo['troupeState']; ?></span>
+            </div>
+        </div>
+        <div class="profile-book">
+            <div class="booking">
+                <button onclick="location.href='ReserveBooking.php?id=<?php echo $_GET['id'];?>'" class="btn">Book Now</button>
             </div>
         </div>
     </div>
     <div class="main-bd">
         <div class="profile-content">
             <div class="profile-side">
-                <p class="mobile-no"><i class="fa fa-phone"></i>+6012-3456789</p>
-                <p class="user-mail"><i class="fa fa-envelope"></i>LKLliondance888@gmail.com</p>
+                <p class="mobile-no"><i class="fa fa-phone"></i>+<?php echo $rowInfo['contactNum']; ?></p>
+                <p class="user-mail"><i class="fa fa-envelope"></i><?php echo $rowInfo['email']; ?></p>
                 <br><br>
                 <div class="user-bio">
                     <h1>Introduction</h1>
-                    <p class="bio">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima ipsa rem eum? Hic, modi blanditiis! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa a temporibus nesciunt harum sapiente animi sunt soluta totam vitae qui! Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit eum perferendis quod ullam ipsam est numquam eligendi eveniet aliquam dicta, repellendus mollitia, distinctio illo molestiae labore? Recusandae esse doloribus quam.</p>
-                </div>       
-                <?php } mysqli_free_result($infoResult);?>
+                    <p class="bio"><?php echo $rowInfo['description']; ?></p>
+                </div>
+                <?php }  
+                mysqli_free_result($infoResult);?>       
                 <hr class="hr1">
                 <div class="performance">
                     <h1>Performance</h1>
