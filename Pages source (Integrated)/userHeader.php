@@ -28,7 +28,7 @@ $notifyCount = mysqli_affected_rows($dbc);
 
     <nav class="navbar1">
         <a href="Home.php">Home</a>
-        <a href="TroupeList.php">Troupe</a>
+        <a href="TroupeList.php">Troupes</a>
         <a href="Aboutus.php">About Us</a>
         <a href="ContactUs.php">Contact Us</a>
     </nav>

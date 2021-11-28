@@ -25,18 +25,12 @@
             <div class="profile-body">
                 <div class="profile-posts tab">
                     <div class="nav3">
-                        <?php include "DBConfig.php" ?>
+                       
                     <div class="profile-form-container">
     <form action="" method="post">
         <div class="form-group">
-            <label for="coverImage" class="label">Troupe cover image: </label>
-            <image src="../Assets/Images/Troupe/liondance1.jpg" alt="Cover Image" class="input" style="width:700px" id="cover-image">
-            <input type="file" name="coverImage" id="upload" class="input">
-            <span class="error"><i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;Error!</span>
-        </div><br>
-        <div class="form-group">
             <label for="profileImage" class="label">Troupe profile image: </label>
-            <image src="../Assets/Images/Troupe/liondance2.jpg" alt="Profile Image" class="input" style="width:400px" id="profile-image">
+            <image src="" alt="Profile Image" class="input" style="width:400px" id="profile-image">
             <input type="file" name="profileImage" id="uploadProfile" class="input">
             <span class="error"><i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;Error!</span>
         </div><br>

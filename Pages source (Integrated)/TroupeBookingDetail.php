@@ -1,13 +1,4 @@
 
-<script>
-    function updateReser(changes){
-        alert("asdsa");
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "ajaxChange.php?id="+<?php echo $reserveId; ?>+"&change="+changes+"", true);
-        xhttp.send();
-    }
-</script>
-
 <head>
 
 </head>
@@ -15,7 +6,7 @@
 include_once "DBConfig.php";
 $reserveId = $_GET['id'];
 
-$query = "SELECT T.troupeImage, I.firstname, I.homeState, I.city, I.phoneNum, I.email,
+$query = "SELECT T.troupeImage, I.firstname, I.homeState, I.district, I.phoneNum, I.email,
           R.performType, R.performService, R.performDate, R.status, R.performTime, R.performAddress, R.performDistrict, R.performState
           FROM reservations R, troupes T, inviters I
           WHERE R.inviterId = I.inviterId AND R.troupeId = T.troupeId AND R.reservationID = '$reserveId';";
@@ -41,7 +32,7 @@ while($row = mysqli_fetch_assoc($result))
                     <br>
                     <div class="customer-detail-part2">
                         <label for="lbl-cs-district" class="lbl-cs-district"><b>District:</b></label>
-                        <label for="customer-district" class="customer-district"><?php echo $row['city']; ?></label>
+                        <label for="customer-district" class="customer-district"><?php echo $row['district']; ?></label>
                     </div>
                     <br>
                     <div class="customer-detail-part3">
@@ -106,8 +97,8 @@ while($row = mysqli_fetch_assoc($result))
                    
                     <?php 
                     if($row["status"] == "Pending"){
-                    echo "<button class='btn' onclick=updateReser('reject')>Reject</button>";
-                    echo "<button class='btn' onclick=updateReser('accept')>Accept</button>";
+                    echo "<button class='btn' onclick=updateReser('reject',$reserveId)>Reject</button>";
+                    echo "<button class='btn' onclick=updateReser('accept',$reserveId)>Accept</button>";
                     }
                 }
                     mysqli_free_result($result);?>

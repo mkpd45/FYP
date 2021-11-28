@@ -41,6 +41,7 @@
         session_unset();
         header("Location: Home.php");
     }
+    include "DBConfig.php";
 ?>
 <header class="header">    
     <span id="troupe-name">HOME</span>
@@ -249,11 +250,22 @@
   </div> 
 </header>
 
+<?php
+
+
+$q = "SELECT troupeImage, troupeName, reserveMode FROM troupes WHERE troupeId = {$_SESSION['characterId']};";
+
+$result = mysqli_query($dbc, $q);
+
+while($row = mysqli_fetch_assoc($result)){
+    
+?>
 <div class="side-menu-bar">
     <span style="display:block;font-size: 2rem; color:pink;text-align:center;font-weight: bold;">Welcome:</span>
-    <img src="../Assets/Images/Troupe/liondance2.jpg" width="180px" height="100px" alt="">
-    <span style="display:block;font-size: 2rem; color:var(--pearl);text-align:center;">Kung Seng Kung Lion Dance Troupe</span>
+    <img src="<?php echo $row['troupeImage']; ?>" width="180px" height="100px" alt="">
+    <span style="display:block;font-size: 2rem; color:var(--pearl);text-align:center;"><?php echo $row['troupeName']; ?></span>
     <br>
+    
     <hr style="height:2px;border-width:0;color:gray;background-color:gray">
     <div class="menu-container">
     <a href="TroupeHome.php" class="menu">Home</a>
@@ -263,9 +275,12 @@
     <h1>Active</h1>
     <p>(Turn on if get ready to reserve)</p>
     <label class="switch">
-        <input type="checkbox" checked>
+        <input type="checkbox"<?php if($row['reserveMode'] == "ON")
+        echo "checked" ?>>
         <span class="slider round"></span>
     </label>
+    <?php }
+    mysqli_free_result($result); ?>
     </div>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"><a class="menu" id="logout"><button type="submit" style="color:#FFEFD5;background-color:transparent;font-size:2.5rem">Logout</button></a></form>
     

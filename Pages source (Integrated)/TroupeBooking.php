@@ -31,15 +31,14 @@
             </div>
             <div class="profile-history tab">
                 <div class="nav1">
-                    <div class="row"><h1>History</h1>
                     <?php
-                        include "DBConfig.php";
                         $fetchQ = "SELECT R.reservationID, T.troupeImage, I.firstname, R.performType, R.performService, R.performDate, R.performAddress, R.performDistrict, R.performState
                                    FROM reservations R, troupes T, inviters I
                                    WHERE R.inviterId = I.inviterId AND R.troupeId = T.troupeId AND T.troupeId = {$_SESSION['characterId']};";
                         
                         $allResult = mysqli_query($dbc, $fetchQ);
-
+                        $totalCount = mysqli_affected_rows($dbc);
+                        echo "<div class='row'><h1>History ($totalCount in total) </h1>";
                         while($allRow = mysqli_fetch_assoc($allResult)){
                     echo "<a href='#'  onclick='loadDoc({$allRow['reservationID']})'>
                     <div class='column'>
@@ -91,14 +90,15 @@
                 <div class="profile-all tab">
                     <div class="right-side">
                     <div class="nav1">
-                        <div class="row"><h1>All</h1>
+                        
                     <?php
                         $fetchQ = "SELECT R.reservationID, T.troupeImage, I.firstname, R.performType, R.performService, R.performDate, R.performAddress, R.performDistrict, R.performState
                                    FROM reservations R, troupes T, inviters I
                                    WHERE R.inviterId = I.inviterId AND R.troupeId = T.troupeId AND T.troupeId = {$_SESSION['characterId']};";
                         
                         $allResult = mysqli_query($dbc, $fetchQ);
-
+                        $totalCount = mysqli_affected_rows($dbc);
+                        echo "<div class='row'><h1>All ($totalCount reservation(s)) </h1>";
                         while($allRow = mysqli_fetch_assoc($allResult)){
                     echo "<a href='#'  onclick='loadDoc({$allRow['reservationID']})'>
                     <div class='column'>
@@ -150,15 +150,16 @@
                 </div>
                 <div class="profile-pending tab">
                     <div class="nav1">
-                        <div class="row"><h1>Pending</h1><?php
+                        <?php
                         $fetchQ = "SELECT R.reservationID, T.troupeImage, I.firstname, R.performType, R.performService, R.performDate, R.performAddress, R.performDistrict, R.performState
                                    FROM reservations R, troupes T, inviters I
                                    WHERE R.inviterId = I.inviterId AND R.troupeId = T.troupeId AND T.troupeId = {$_SESSION['characterId']} AND R.status = 'Pending';";
                         
                         $allResult = mysqli_query($dbc, $fetchQ);
-
+                        $totalCount = mysqli_affected_rows($dbc);
+                        echo "<div class='row'><h1>Pending ($totalCount in total) </h1>";
                         while($allRow = mysqli_fetch_assoc($allResult)){
-                    echo "<a href='#' onclick='loadDoc2({$allRow['reservationID']})'>
+                    echo "<a href='#' onclick='loadDoc({$allRow['reservationID']})'>
                     <div class='column'>
                         <div class='grid-item'>
                             <div class='content-1'>
@@ -207,14 +208,15 @@
                 </div>
                 <div class="profile-accepted tab">
                 <div class="nav1">
-                        <div class="row"><h1>Accepted</h1>
+                        
                         <?php
  $fetchQ = "SELECT R.reservationID, T.troupeImage, I.firstname, R.performType, R.performService, R.performDate, R.performAddress, R.performDistrict, R.performState
                                    FROM reservations R, troupes T, inviters I
                                    WHERE R.inviterId = I.inviterId AND R.troupeId = T.troupeId AND T.troupeId = {$_SESSION['characterId']} AND R.status = 'Accepted';";
                         
                         $allResult = mysqli_query($dbc, $fetchQ);
-
+                        $totalCount = mysqli_affected_rows($dbc);
+                        echo "<div class='row'><h1>Accepted ($totalCount in total) </h1>";
                         while($allRow = mysqli_fetch_assoc($allResult)){
                     echo "<a href='#' onclick='loadDoc({$allRow['reservationID']})'>
                     <div class='column'>
@@ -264,14 +266,15 @@
                 </div>
                 <div class="profile-canceled tab">
                 <div class="nav1">
-                        <div class="row"><h1>Canceled</h1>
+
                         <?php
  $fetchQ = "SELECT R.reservationID, T.troupeImage, I.firstname, R.performType, R.performService, R.performDate, R.performAddress, R.performDistrict, R.performState
                                    FROM reservations R, troupes T, inviters I
                                    WHERE R.inviterId = I.inviterId AND R.troupeId = T.troupeId AND T.troupeId = {$_SESSION['characterId']} AND R.status = 'Canceled';";
                         
                         $allResult = mysqli_query($dbc, $fetchQ);
-
+                        $totalCount = mysqli_affected_rows($dbc);
+                        echo "<div class='row'><h1>Canceled ($totalCount in total) </h1>";
                         while($allRow = mysqli_fetch_assoc($allResult)){
                     echo "<a href='#' onclick='loadDoc({$allRow['reservationID']})'>
                     <div class='column'>
@@ -349,17 +352,20 @@ function loadDoc1(id) {
   xhttp.send();
 }
 
-function loadDoc2(id) {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("ajax").innerHTML =
-      this.responseText;
+    function updateReser(changes, reserveId){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "ajaxChangeRStatus.php?id="+reserveId+"&change="+changes+"", false);
+        xhttp.send();
+        if(xhttp.responseText == "Status changed"){
+            if(changes == accept)
+            tabs(4)
+            else
+            tabs(5)
+        }
+        else
+            alert("Fail to " + changes + "this reservation.");
     }
-  };
-  xhttp.open("GET", "PendingPage.php?id="+id+"", true);
-  xhttp.send();
-}
+
 </script>
 </body>
 </html>

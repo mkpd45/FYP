@@ -12,7 +12,7 @@
 <body>
 <?php 
 include "./Troupe-side.php"; 
-include "DBConfig.php";
+
 ?>
 <?php
 $fetchTInfo = "SELECT * FROM troupes WHERE troupeId = {$_SESSION['characterId']};";

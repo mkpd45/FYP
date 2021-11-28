@@ -84,7 +84,7 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
             <br>
             <div class="customer-detail-part2">
                 <label for="lbl-cs-district" class="lbl-cs-district"><b>District:</b></label>
-                <label for="customer-district" class="customer-district"><?php echo $row['city']; ?></label>
+                <label for="customer-district" class="customer-district"><?php echo $row['district']; ?></label>
             </div>
             <br>
             <div class="customer-detail-part3">
@@ -133,7 +133,7 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
             </div>
             <span class="msg" id="dateMsg"></span>
             <div class="inpbox">
-              <input type="date" id="dateReserve" placeholder="Date" min="<?php echo(date("Y-m-d",strtotime("+2 week"))); ?>" max="<?php echo(date("Y-m-d",strtotime("+3 months"))); ?>">          
+              <input type="date"  onchange=checkDate(this.value) id="dateReserve" placeholder="Date" min="<?php echo(date("Y-m-d",strtotime("+2 week"))); ?>" max="<?php echo(date("Y-m-d",strtotime("+3 months"))); ?>">          
             </div>
             <span class="msg" id="timeMsg"></span>
             <div class="inpbox">
@@ -244,6 +244,17 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
     document.getElementById("performPrice").innerHTML = "RM " + document.getElementById("serviceSelect").value;
     else
     document.getElementById("performPrice").innerHTML = "RM "
+  }
+
+  function checkDate(date){
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET","ajaxChkDate.php?id=<?php echo $_GET['id'];?>&date="+date+"",false);
+    xmlhttp.send();
+    
+    if(xmlhttp.responseText != "Available"){
+      alert("This day is unavailable for us troupe because of the reason: " + xmlhttp.responseText);
+      $("#dateReserve").val("");
+    }
   }
 
   function completeReservation(){
