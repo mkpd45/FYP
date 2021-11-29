@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2021 at 06:47 AM
--- Server version: 10.1.40-MariaDB
--- PHP Version: 7.3.5
+-- Generation Time: Nov 29, 2021 at 06:18 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -33,6 +32,35 @@ CREATE TABLE `admins` (
   `username` varchar(20) NOT NULL,
   `password` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`adminId`, `username`, `password`) VALUES
+(1, 'mlds_admin', 'mlds-2021');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `feedback`
+--
+
+CREATE TABLE `feedback` (
+  `feedbackId` int(10) NOT NULL,
+  `feedbackName` varchar(50) NOT NULL,
+  `feedbackEmail` varchar(60) NOT NULL,
+  `feedbackPhone` varchar(12) NOT NULL,
+  `feedbackSubject` varchar(40) NOT NULL,
+  `feedbackMessage` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `feedback`
+--
+
+INSERT INTO `feedback` (`feedbackId`, `feedbackName`, `feedbackEmail`, `feedbackPhone`, `feedbackSubject`, `feedbackMessage`) VALUES
+(1, 'Goh Zhi Xiang', 'zhixiangtou@gmail.com', '0129685596', 'Hello', 'qwertyuiopasdfghjklzxcvbnm');
 
 -- --------------------------------------------------------
 
@@ -67,23 +95,24 @@ CREATE TABLE `inviters` (
   `inviterId` int(10) UNSIGNED NOT NULL,
   `firstname` varchar(30) NOT NULL,
   `lastname` varchar(30) NOT NULL,
-  `address` varchar(80) DEFAULT NULL,
   `homeState` varchar(20) DEFAULT NULL,
   `district` varchar(30) DEFAULT NULL,
   `phoneNum` varchar(12) DEFAULT NULL,
   `profileImage` varchar(40) DEFAULT NULL,
   `username` varchar(30) NOT NULL,
   `email` varchar(60) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` varchar(61) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `inviters`
 --
 
-INSERT INTO `inviters` (`inviterId`, `firstname`, `lastname`, `address`, `homeState`, `district`, `phoneNum`, `profileImage`, `username`, `email`, `password`) VALUES
-(1, 'Kuan Le', 'Low', 'No.47 Jalan Heng Wong', 'Johor', 'Gemas Baru', '0123456789', '../Assets/Images/Inviter/images.png', '', 'kuanle4586@gmail.com', 'kl123'),
-(2, 'Zhi Hao', 'Lee', 'No.123 Jalan Zhi Hao', 'Johor', 'Kulai', '0167493807', '../Assets/Images/Inviter/images.png', '', 'leezh-jm18@student.tarc.edu.my', 'zh123');
+INSERT INTO `inviters` (`inviterId`, `firstname`, `lastname`, `homeState`, `district`, `phoneNum`, `profileImage`, `username`, `email`, `password`) VALUES
+(1, 'Kuan Le', 'Low', 'Johor', 'Gemas Baru', '0123456789', '../Assets/Images/Inviter/images.png', '', 'kuanle4586@gmail.com', 'kl123'),
+(2, 'Zhi Hao', 'Lee', 'Johor', 'Kulai', '0167493807', '../Assets/Images/Inviter/images.png', '', 'leezh-jm18@student.tarc.edu.my', 'zh123'),
+(14, 'Low', 'Kuan Le', 'Johor', 'Batu Pahat ', '010161111111', '../Assets/Images/Web/profile-img.jpg', '', 'KuanleTou@gmail.com', '$2y$10$/3dnCJFfnCgfRSQbZhf11.NVl2GthokFTwcPr364Pi9'),
+(15, 'Goh', 'Xiang', 'Kedah', 'Kluang', '0129685596', '../Assets/Images/Web/profile-img.jpg', '', 'zhixiangtou@gmail.com', '$2y$10$XS6AE/SXasnjS5vDF.9kneZ7A.MjbSCwyKEhoTrxRMV');
 
 -- --------------------------------------------------------
 
@@ -95,7 +124,7 @@ CREATE TABLE `notifications` (
   `notifyId` int(10) UNSIGNED NOT NULL,
   `receiverId` int(10) NOT NULL,
   `title` varchar(100) NOT NULL,
-  `body` tinytext,
+  `body` tinytext DEFAULT NULL,
   `dateSent` date NOT NULL,
   `theStatus` varchar(12) NOT NULL,
   `purpose` varchar(20) NOT NULL,
@@ -116,7 +145,9 @@ INSERT INTO `notifications` (`notifyId`, `receiverId`, `title`, `body`, `dateSen
 (7, 1, 'Reservation accepted', 'Your request have been accepted by the lion dance troupe', '2021-11-24', 'UNREAD', 'appceted', 'Inviter'),
 (8, 1, 'New Reservation', 'Your troupe have a new performance invitation from a party that need you.', '2021-11-24', 'UNREAD', 'Reserve', ''),
 (9, 3, 'New Reservation', 'Your troupe have a new performance invitation from a party that need you.', '2021-11-24', 'UNREAD', 'Reserve', ''),
-(10, 1, 'New Reservation', 'Your troupe have a new performance invitation from a party that need you.', '2021-11-24', 'UNREAD', 'Reserve', '');
+(10, 1, 'New Reservation', 'Your troupe have a new performance invitation from a party that need you.', '2021-11-24', 'UNREAD', 'Reserve', ''),
+(11, 2, 'New Reservation', 'Your troupe have a new performance invitation from a party that need you.', '2021-11-26', 'UNREAD', 'Reserve', ''),
+(12, 1, 'New Reservation', 'Your troupe have a new performance invitation from a party that need you.', '2021-11-26', 'UNREAD', 'Reserve', '');
 
 -- --------------------------------------------------------
 
@@ -180,7 +211,9 @@ INSERT INTO `reservations` (`reservationID`, `performType`, `performService`, `p
 (5, '', '', '2021-12-10', 'Afternoon', 'johor', 'segamat', 'qwww', 'Pending', '2021-11-24', 1, 1),
 (6, '', '', '2021-12-09', 'Afternoon', 'johor', 'segamat', 'No.47 Please', 'Pending', '2021-11-24', 1, 1),
 (7, '', '', '2021-12-17', 'Afternoon', 'johor', 'segamat', 'No.999 Jalan very ok', 'Pending', '2021-11-24', 1, 3),
-(8, '', '', '2021-12-28', 'Afternoon', 'johor', 'segamat', 'TARUC', 'Pending', '2021-11-24', 1, 1);
+(8, '', '', '2021-12-28', 'Afternoon', 'johor', 'segamat', 'TARUC', 'Pending', '2021-11-24', 1, 1),
+(9, '', '', '2021-12-10', 'Morning', 'kedah', 'segamat', 'zdsfsdsdfsf', 'Pending', '2021-11-26', 15, 2),
+(10, '', '', '2021-12-10', 'Morning', 'johor', 'segamat', 'No.143, Jalan Desa Baiduri 3A, Taman Desa Baiduri', 'Completed', '2021-11-26', 14, 1);
 
 -- --------------------------------------------------------
 
@@ -201,7 +234,7 @@ CREATE TABLE `troupes` (
   `contactNum` varchar(12) DEFAULT NULL,
   `username` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` varchar(61) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -211,7 +244,33 @@ CREATE TABLE `troupes` (
 INSERT INTO `troupes` (`troupeId`, `troupeName`, `description`, `address`, `troupeState`, `city`, `coverImage`, `troupeImage`, `reserveMode`, `contactNum`, `username`, `email`, `password`) VALUES
 (1, 'Yong Heng Dragon Lion Dance', 'Powerful, spiritual and exciting performance from Muar.', 'No. 88 Jalan Weng Huat 85200\r\nMuar Johor', 'Johor', 'Muar', NULL, '../Assets/Images/Troupe/liondance4.jpg', 'ON', '0123456789', 'YH123', 'yh123@gmail.com', 'yhdld123'),
 (2, 'Seng Nam Dragon Lion Dance', 'Strong, iconic and exciting performance from Segamat.', 'No. 66 Jalan Weng Wen 85000\r\nSegamat Johor', 'Johor', 'Segamat', NULL, '../Assets/Images/Troupe/liondance5.jpg', 'ON', '01345987651', 'sn123', 'sn123@gmail.com', 'yhdld123'),
-(3, 'Jun Liong Dragon Lion Dance', 'Excellent, striking and stunning performance from Selangor.', 'No. 99 Jalan huat huat 46978 \r\nPetaling Jaya', 'Selangor', 'Petaling Jaya', NULL, '../Assets/Images/Troupe/liondance6.jpg', 'ON', '01823456789', 'jl123', 'jl123@gmail.com', 'yhdld123');
+(3, 'Jun Liong Dragon Lion Dance', 'Excellent, striking and stunning performance from Selangor.', 'No. 99 Jalan huat huat 46978 \r\nPetaling Jaya', 'Selangor', 'Petaling Jaya', NULL, '../Assets/Images/Troupe/liondance6.jpg', 'ON', '01823456789', 'jl123', 'jl123@gmail.com', 'yhdld123'),
+(25, 'ManGuanTou', '', NULL, 'Johor', 'Segamat', NULL, '../Assets/Images/Web/profile-img.jpg', '', '0169989656', '', 'manguantou777@gamil.com', '$2y$10$JlmHlQhNFHLI49k9SP3s5uqRNjmUm2wpUYKl2iyHNuYTXh5XwZWmS');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `troupe_application`
+--
+
+CREATE TABLE `troupe_application` (
+  `troupeappId` int(10) NOT NULL,
+  `troupeappName` varchar(50) NOT NULL,
+  `troupeappEmail` varchar(60) NOT NULL,
+  `troupeappPhone` varchar(12) NOT NULL,
+  `troupeappAddress` varchar(100) NOT NULL,
+  `troupeappMessage` varchar(100) NOT NULL,
+  `supportDocument` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `troupe_application`
+--
+
+INSERT INTO `troupe_application` (`troupeappId`, `troupeappName`, `troupeappEmail`, `troupeappPhone`, `troupeappAddress`, `troupeappMessage`, `supportDocument`) VALUES
+(1, 'siaoliaolah', 'siaoliao@gmail.com', '0168656593', 'Kulai, Johor', 'shojhasfiaivbaijsdbhiuvvhoawhnuobvuaibsobvibgsuvhuoasbudvhviuHIODJIOCisoa', 'Resume of Lee Zhi Hao.pdf'),
+(2, 'haolianlah', 'haolian@gmail.com', '0183256953', 'Bangsa, Kuala Lumpur', 'slfhoausdhdfiobasdhfiuhauso', 'Letter of Job Application - Lee Zhi Hao.pdf'),
+(3, 'LALAlah', 'LALA@gmail.com', '0178454636', 'Muar, Johor', 'ohdfiughaudhgjdbjg', 'register.jfif');
 
 -- --------------------------------------------------------
 
@@ -223,7 +282,7 @@ CREATE TABLE `unavailabledate` (
   `unDateId` int(10) UNSIGNED NOT NULL,
   `dateSet` date NOT NULL,
   `reason` varchar(200) DEFAULT NULL,
-  `specificDay` tinyint(1) DEFAULT '0'
+  `specificDay` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -233,10 +292,10 @@ CREATE TABLE `unavailabledate` (
 --
 
 CREATE TABLE `users` (
-  `userRole` varchar(8) CHARACTER SET utf8mb4 NOT NULL DEFAULT '',
-  `userId` int(11) UNSIGNED NOT NULL DEFAULT '0',
-  `username` varchar(50) NOT NULL DEFAULT '',
-  `password` varchar(50) NOT NULL DEFAULT '',
+  `userId` int(11) UNSIGNED NOT NULL,
+  `userRole` varchar(8) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(61) NOT NULL,
   `characterId` int(10) DEFAULT NULL,
   `nameUser` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -245,12 +304,16 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userRole`, `userId`, `username`, `password`, `characterId`, `nameUser`) VALUES
-('Inviter', 1, 'kuanle4586@gmail.com', 'kl123', 1, 'Kuan Le'),
-('Troupe', 2, 'yh123@gmail.com', 'yh123', 1, NULL),
-('Troupe', 3, 'jl123@gmail.com', 'jl123', 3, NULL),
-('Troupe', 4, 'sn123@gmail.com', 'sn123', 2, NULL),
-('Inviter', 5, 'leezh-jm18@student.tarc.edu.my', 'zh123', 2, 'Zhi Hao');
+INSERT INTO `users` (`userId`, `userRole`, `username`, `password`, `characterId`, `nameUser`) VALUES
+(1, 'Inviter', 'kuanle4586@gmail.com', 'kl123', 1, 'Kuan Le'),
+(2, 'Troupe', 'yh123@gmail.com', 'yh123', 1, NULL),
+(3, 'Troupe', 'jl123@gmail.com', 'jl123', 3, NULL),
+(4, 'Troupe', 'sn123@gmail.com', 'sn123', 2, NULL),
+(5, 'Inviter', 'leezh-jm18@student.tarc.edu.my', 'zh123', 2, 'Zhi Hao'),
+(7, 'Troupe', 'manguantou777@gamil.com', '$2y$10$xL670zIlcoOUsrFzp1LFrOv7vnvYfBHWx4riG2aRI9fkDAEgwCWmu', NULL, NULL),
+(19, 'Inviter', 'KuanleTou@gmail.com', '$2y$10$/3dnCJFfnCgfRSQbZhf11.NVl2GthokFTwcPr364Pi9hbKhnFxe0S', 14, 'KuanLe'),
+(20, 'Inviter', 'zhixiangtou@gmail.com', '$2y$10$XS6AE/SXasnjS5vDF.9kneZ7A.MjbSCwyKEhoTrxRMVn3nkwurE8q', 15, 'Goh'),
+(21, 'Troupe', 'manguantou777@gamil.com', '$2y$10$JlmHlQhNFHLI49k9SP3s5uqRNjmUm2wpUYKl2iyHNuYTXh5XwZWmS', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -284,6 +347,12 @@ INSERT INTO `videos` (`videoId`, `videoGroup`, `location`, `troupeId`) VALUES
 --
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`adminId`);
+
+--
+-- Indexes for table `feedback`
+--
+ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`feedbackId`);
 
 --
 -- Indexes for table `images`
@@ -326,6 +395,12 @@ ALTER TABLE `troupes`
   ADD PRIMARY KEY (`troupeId`);
 
 --
+-- Indexes for table `troupe_application`
+--
+ALTER TABLE `troupe_application`
+  ADD PRIMARY KEY (`troupeappId`);
+
+--
 -- Indexes for table `unavailabledate`
 --
 ALTER TABLE `unavailabledate`
@@ -352,7 +427,13 @@ ALTER TABLE `videos`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `adminId` int(100) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `adminId` int(100) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `feedback`
+--
+ALTER TABLE `feedback`
+  MODIFY `feedbackId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `images`
@@ -364,13 +445,13 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT for table `inviters`
 --
 ALTER TABLE `inviters`
-  MODIFY `inviterId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `inviterId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `notifyId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `notifyId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `performances`
@@ -382,19 +463,31 @@ ALTER TABLE `performances`
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `reservationID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `reservationID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `troupes`
 --
 ALTER TABLE `troupes`
-  MODIFY `troupeId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `troupeId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT for table `troupe_application`
+--
+ALTER TABLE `troupe_application`
+  MODIFY `troupeappId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `unavailabledate`
 --
 ALTER TABLE `unavailabledate`
   MODIFY `unDateId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `userId` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `videos`

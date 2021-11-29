@@ -30,7 +30,7 @@
 
         <div class="row">        
           <?php
-            include "DBConfig.php";
+            $dbc = @mysqli_connect("localhost","root","","projectdb");
 
             $query = "SELECT * FROM troupe_application";
             $result = mysqli_query($dbc, $query); 

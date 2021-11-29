@@ -71,7 +71,7 @@ include "./header.php";?>
 
     <?php 
 
-    include "DBConfig.php";
+    $dbc = @mysqli_connect("localhost","root","","projectdb");
     
     if(isset($_POST['submit-btn'])){
         $troupeappName = $_POST['troupeappName'];

@@ -188,7 +188,7 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
 </div>
 <script src="https://cdn.plyr.io/3.6.3/plyr.polyfilled.js"></script>
 <script type="text/javascript" src="https//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script src="js/script.js"></script>
+<script src="../js/script.js"></script>
 <script>
 //video slider
 var slideIndex = 1;

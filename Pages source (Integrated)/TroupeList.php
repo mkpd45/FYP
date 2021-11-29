@@ -89,7 +89,7 @@ include "DBConfig.php";
 
     <?php
 
-    $fetchTQuery = "Select * From Troupes;";
+    $fetchTQuery = "SELECT * FROM Troupes WHERE reserveMode = 'ON';";
 
     try{
         $result = mysqli_query($dbc, $fetchTQuery);

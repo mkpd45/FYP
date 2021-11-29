@@ -33,7 +33,6 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
         </div>
         <div class="profile-book">
             <div class="booking">
-                <button onclick="location.href='ReserveBooking.php?id=<?php echo $_GET['id'];?>'" class="btn">Book Now</button>
             </div>
         </div>
     </div>

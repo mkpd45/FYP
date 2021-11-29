@@ -326,7 +326,7 @@
             </div>
     </div>
 </div>
-<script src="js/script.js"></script>
+<script src="../js/script.js"></script>
 <script>
     function loadDoc(id) {
   var xhttp = new XMLHttpRequest();

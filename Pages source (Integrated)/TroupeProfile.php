@@ -30,7 +30,7 @@
     <form action="" method="post">
         <div class="form-group">
             <label for="profileImage" class="label">Troupe profile image: </label>
-            <image src="" alt="Profile Image" class="input" style="width:400px" id="profile-image">
+            <image src="../Assets/Images/Troupe/liondance4.jpg" alt="Profile Image" class="input" style="width:400px" id="profile-image">
             <input type="file" name="profileImage" id="uploadProfile" class="input">
             <span class="error"><i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;Error!</span>
         </div><br>

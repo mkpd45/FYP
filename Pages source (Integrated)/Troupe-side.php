@@ -273,9 +273,9 @@ while($row = mysqli_fetch_assoc($result)){
     <a href="TroupeProfile.php" class="menu">Troupe Profile</a  >
     <a href="TroupeContact.php" class="menu">Contact Us</a>
     <h1>Active</h1>
-    <p>(Turn on if get ready to reserve)</p>
+    <p>(Turn on if ready to be reserved)</p>
     <label class="switch">
-        <input type="checkbox"<?php if($row['reserveMode'] == "ON")
+        <input type="checkbox" id="modeCheck" onclick=changeReserMode() <?php if($row['reserveMode'] == "ON")
         echo "checked" ?>>
         <span class="slider round"></span>
     </label>
@@ -289,3 +289,18 @@ while($row = mysqli_fetch_assoc($result)){
 <script src="../js/script.js"></script>
 </body>
 </html>
+
+<script>
+    function changeReserMode(){
+        var mode = ""
+        if(document.getElementById("modeCheck").checked == true)
+        mode = "on";
+        else
+        mode = "off";
+
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", "ajaxChangeRMode.php?mode="+mode+"", false);
+  xmlhttp.send();
+  alert(xmlhttp.responseText);
+    }
+</script>

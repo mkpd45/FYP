@@ -17,7 +17,6 @@
     
 <?php 
     include "./AdminHeader.php";
-    include_once "DBConfig.php";
 
     $dbc = @mysqli_connect("localhost","root","","projectdb");
     
