@@ -25,7 +25,6 @@ if(!empty($_SESSION['userRole'])){
 else
 include "./header.php";
 
-include "DBConfig.php";
     
 if(isset($_POST['submit_btn'])){
     $name = $_POST['name'];
@@ -115,7 +114,7 @@ if(isset($_POST['submit_btn'])){
     </button>
 
     <?php include "./footer.php" ?>
-<script src="../js/script.js"></script>
+
     <script>
         const btnScrollToTop = document.querySelector("#btnScrollToTop");
 
@@ -123,5 +122,5 @@ if(isset($_POST['submit_btn'])){
             window.scrollTo(0,0);
         });
     </script>
-
+<script src="../js/script.js"></script>
 </body

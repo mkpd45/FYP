@@ -25,7 +25,6 @@ if(!empty($_SESSION['userRole'])){
 else
 include "./header.php";
 
-$dbc = @mysqli_connect("localhost","root","","projectdb");
     
 if(isset($_POST['submit_btn'])){
     $name = $_POST['name'];

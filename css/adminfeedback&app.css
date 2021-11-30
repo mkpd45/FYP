@@ -128,7 +128,7 @@
   float: right;
 }
 
-#popdiv {
+.popdiv {
   height: 700px;
   width: 610px;
   background-color: white;
@@ -140,30 +140,30 @@
   color: black;
 }
 
-#popdiv .text{
+.popdiv .text{
   font-size: 35px;
   font-weight: 600;
   text-align: center;
   margin-bottom: 50px;
 }
 
-#popdiv .close-btn{
+.popdiv .close-btn{
   right: 15px;
   top: 10px;
   font-size: 18px;
   cursor: pointer;
 }
 
-#popdiv .close-btn:hover{
+.popdiv .close-btn:hover{
   color: var(--red);
 }
 
-#popdiv form{
+.popdiv form{
   margin-top: -20px;
   z-index: 9999;
 }
 
-#popdiv form .data{
+.popdiv form .data{
   height: 45px;
   width: 100%;
   margin: 20px 0;

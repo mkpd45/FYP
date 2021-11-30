@@ -17,7 +17,6 @@ if(mysqli_query($dbc, $query))
     $characterId = mysqli_insert_id($dbc);
     $query1 = "INSERT INTO users(userRole, username, password, characterId, nameUser) VALUES ('Inviter', '$email', '$hash_password', '$characterId', '$fname')";
     mysqli_query($dbc, $query1);
-header("Location:Home.php");
 } 
 else
 {

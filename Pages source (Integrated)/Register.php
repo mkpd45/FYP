@@ -51,22 +51,23 @@ include "./header.php";
         </div>
 
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="register-form" method="post">
-        <span class="msg" id="fNameMsg"></span>
+        
             <div class="inputBox">
                 <h3>First Name</h3>
-                <input type="text" name="fname" id="fname" value="" placeholder="Enter your first name" required>
+                <input type="text" id="fname" placeholder="Enter your first name" >
             </div>
-        
-        <span class="msg" id="lNameMsg"></span>
+            <span class="msg" id="fNameMsg"></span>
+
             <div class="inputBox">
                 <h3>Last Name</h3>
-                <input type="text" name="lname" id="lname" value="" placeholder="Enter your last name" required>
+                <input type="text" id="lname" placeholder="Enter your last name">
             </div>
+            <span class="msg" id="lNameMsg"></span>
         
-        <span class="msg" id="stateMsg"></span>
+        
             <div class="inputBox">
                 <h3>State</h3>
-                <select name="state" id="state" name="state" value="">
+                <select name="state" id="state" name="state" >
                      <option value="none">Select state:</option>
                      <option value="Johor">Johor</option>
                      <option value="Kedah">Kedah</option>
@@ -82,12 +83,12 @@ include "./header.php";
                      <option value="Terrengganu">Terrengganu</option>
                    </select>
                 <!-- dropdown -->
-        
             </div>
-        <span class="msg" id="districtMsg"></span>
+            <span class="msg" id="stateMsg"></span>
+
             <div class="inputBox">
                 <h3>Disctrict</h3>
-                <select name="district" id="district" name="district" value="">
+                <select name="district" id="district" name="district" >
                 <option value="none">Select district:</option>
                     <option value="Batu Pahat">batu pahat</option>
                     <option value="Johor Bahru">johor bahru</option>
@@ -102,26 +103,29 @@ include "./header.php";
                    </select>
                 <!-- dropdown -->
             </div>
-        
-        <span class="msg" id="phoneMsg"></span>
+            <span class="msg" id="districtMsg"></span>
+
             <div class="inputBox">
                 <h3>Phone Number</h3>
-                <input type="number" placeholder="Enter your phone number" name="phoneNumber" id="phoneNumber" value="" required>
+                <input type="number" placeholder="Enter your phone number" id="phoneNumber">
             </div>
-        
-        <span class="msg" id="emailMsg"></span>
+        <span class="msg" id="phoneMsg"></span>
+
             <div class="inputBox">
                 <h3>Email</h3>
-                <input type="text" placeholder="Enter your email" name="email" id="email" value="" required>
+                <input type="email" placeholder="Enter your email" id="emailReg">
             </div>
-        
-        <span class="msg" id="passwordMsg"></span>
+            <span class="msg" id="emailMsg"></span>
+
             <div class="inputBox">
                 <h3>Password</h3>
-                <input type="password" placeholder="Enter your password" name="password" id="password" value="" required>
+                <input type="password" placeholder="Enter your password" id="password" >
             </div>
-        
+            <span class="msg" id="passwordMsg"></span>
+
+            <div style="float:right">
             <input type="submit" onclick="completeReservation()" class="btn" value="Register Now">
+            </div>
         </form>
 
     </div>
@@ -136,20 +140,20 @@ include "./header.php";
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     
-function completeReservation()
-{
-    $("#fNameMsg").html("");
-    $("#lNameMsg").html("");
-    $("#stateMsg").html("");
-    $("#districtMsg").html("");
-    $("#phoneMsg").html("");
-    $("#emailMsg").html("");
-    $("#passwordMsg").html("");
+
     $(document).ready(function()
     {
         $(".register-form").submit(function(e)
-        {
+        {   
+            $("#fNameMsg").html("");
+            $("#lNameMsg").html("");
+            $("#stateMsg").html("");
+            $("#districtMsg").html("");
+            $("#phoneMsg").html("");
+            $("#emailMsg").html("");
+            $("#passwordMsg").html("");
             e.preventDefault();
+
             var bool = 1;
 
             var fNameValue = $("#fname").val();
@@ -157,7 +161,7 @@ function completeReservation()
             var stateValue = $("#state").val();
             var districtValue = $("#district").val();
             var phoneValue = $("#phoneNumber").val();
-            var emailValue = $("#email").val();
+            var emailValue = $("#emailReg").val();
             var passwordValue = $("#password").val();
 
                 if(fNameValue == "")
@@ -184,6 +188,10 @@ function completeReservation()
             { $("#emailMsg").html("Please enter your Email.");
                 bool = 0;}
 
+                if(!emailRegx.test(emailValue))
+            {   $("#emailMsg").html("Invalid email");
+                bool = 0;}
+
                 if(passwordValue == "")
             { $("#passwordMsg").html("Please the Password for this account.");
                 bool = 0;}
@@ -193,20 +201,20 @@ function completeReservation()
                 var xmlhttp=new XMLHttpRequest();
                 xmlhttp.open("POST","ajaxRegister.php",false);
                 xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xmlhttp.send("fname="+$("#fname").val()+"&lname="+$("#lname").val()+"&state="+$("#state").val()+"&district="+$("#district").val()+"&phoneNumber="+$("#phoneNumber").val()+"&email="+$("#email").val()+"&password="+$("#password").val()+"");
+                xmlhttp.send("fname="+$("#fname").val()+"&lname="+$("#lname").val()+"&state="+$("#state").val()+"&district="+$("#district").val()+"&phoneNumber="+$("#phoneNumber").val()+"&email="+$("#emailReg").val()+"&password="+$("#password").val()+"");
                 if(xmlhttp.responseText == "Success")
                 {
                     alert("kukubird");
                 }
                 else
                 {
-                    alert(xmlhttp.responseText);
+                    alert("Register Success, you are ready to make reservation.");
                 }
                 
             }
         });
     });
-}
+
 </script>
 </body>
 </html>

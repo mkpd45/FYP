@@ -42,15 +42,16 @@
                 <h3>Troupe Name: <label for="troupe-name"><?php echo "{$row['troupeappName']}"?></label></h3>
                 <p class="troupe-email"><b>Email: </b><label for="troupe-email" class="troupe-email"><?php echo "{$row['troupeappEmail']}"?></label></p>
                 <p><b>Address: </b><label for="troupe-address"><?php echo "{$row['troupeappAddress']}"?></label></p>
-                <button onclick="popup()" class="btn">Read More</button>
+                <button onclick="popup('<?php echo $row['troupeappId']?>')" class="btn">Read More</button>
             </div>
           <?php  }   ?>
         </div>
         
     </div>
 </div>
+
 <div class="backdrop">
-                  <div id="popdiv">
+                  <div id="popdivApp" class="popdiv">
                       <label class="close-btn fas fa-times" onclick="popout()" title="close"></label>
                       <div class="text">
                           Troupe Application
@@ -87,12 +88,12 @@
                           <!-- supporting document view -->
                           <div class="data" style="margin-top:40px">
                               <label><b>Support Document: </b></label>
-                              <button class="btn1">Open File</button>
+                              <a href="https://www.w3schools.com" class="btn1" target="_blank">Open File</a>
                           </div>
                           </form>
                         <?php  }   ?> 
                   </div>
-                </div>
+</div>
 
 <div class="container2">
   <div class="nav1">
@@ -125,7 +126,7 @@
   </div>
 </div>
 <div class="backdrop1">
-                  <div id="popdiv">
+                  <div class="popdiv">
                       <label class="close-btn fas fa-times" onclick="popout1()" title="close"></label>
                       <div class="text">
                           Feedback Details
@@ -196,7 +197,16 @@ for (var i = 0; i < btns.length; i++) {
   });
 }
 
-function popup(){
+function popup(id){
+    alert(id)
+    var xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function() {
+        if (this.readyState==4 && this.status==200) {
+        document.getElementById("popdivApp").innerHTML=this.responseText;
+        }
+    }
+    xmlhttp.open("GET","ajaxShowAppli.php?id="+id+"",false);
+    xmlhttp.send();
     $(".backdrop").fadeTo(200, 1);
 }
 

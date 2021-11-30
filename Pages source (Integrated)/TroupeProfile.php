@@ -197,7 +197,7 @@
                                     <td><input type='text' value='{$row['performService']}'  onkeypress='return false'></td>
                                     <td><input type='text' value='{$row['price']}'  onkeypress='return false'></td>
                                     <td><button class='btn' onclick=popup({$row['performId']})>Edit</button></td>
-                                    <td><i class='delete-btn fas fa-times-circle' id='{$row['performId']}'></i></td>
+                                    <td><i class='delete-btn fas fa-times-circle' onclick=delPerformance({$row['performId']}) ></i></td>
                                         </tr>";
                                 }
                         
@@ -289,28 +289,28 @@
         <div class="text">
             Edit performance
         </div>
-<form action="#">
+        <div id="edit-performance" class="edit-form">
                     <div class="data">
                         <label for="lbl-performance-type" class="lbl-performance-type"><b>Performance Type:</b></label>
-                        <select class="performance-type">
+                        <select class="performance-type" id="editType">
                             <option value="none"></option>
                             <option>Acrobatic Lion Dance</option>
                             <option>Cai Qing Lion Dance</option>
-<option>Traditional Lion Dance</option>
+                            <option>Traditional Lion Dance</option>
                             <option>24 Festive Drums</option>
                         </select>
                     </div>
                     <div class="data" style="margin-bottom:10rem">
                         <label><b>Description: </b></label>
-                        <textarea name="performance-description" class="performance-description" cols="30" rows="4"></textarea>
+                        <textarea name="performance-description" class="performance-description" id="editDesc" cols="30" rows="4"></textarea>
                     </div>
                     <div class="data" >
                         <label for="lbl-performance-service" class="lbl-performance-service"><b>Performance Service:</b></label>
-                        <select class="performance-service">
+                        <select class="performance-service" id="editService">
                             <option value="none"></option>
                             <option>Lion Dance Performance For House Blessing</option>
                             <option>Lion Dance Performance For Corporate Event</option>
-<option>Lion Dance Performance For Wedding Ceremony</option>
+                            <option>Lion Dance Performance For Wedding Ceremony</option>
                             <option>Lion Dance For Grand Opening Ceremony</option>
                             <option>Lion Dance Performance For Gala Event</option>
                             <option>Lion Dance Performance For Launch Event</option>
@@ -318,18 +318,20 @@
                     </div>
 <div class="data">
                         <label><b>Price: </b></label>
-                        <input type="text" required>
+                        <input type="text" id="editPrice" required>
                     </div>
                     <div class="btn">
                         <div class="inner"></div>
-                        <button type="submit" class="submit">confirm</button>
+                        <button class="submit">confirm</button>
                     </div>
-        </form>
+                        </div>
     </div>
 </div>    
 </body>
 </html>
 <script src="../js/script.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <?php echo "<script> 
             document.getElementById('posts').click(); 
             document.getElementById('otherType').style.display = 'none';
@@ -355,8 +357,10 @@ document.getElementById("updateBtn").addEventListener("click",function(){
     xmlhttp.open("GET","ajaxUpdateProfile.php?name="+$("#profileName").val()+"&city="+$("#profileCity").val()+
                  "&state="+$("#profileState").val()+"&contact="+$("#profileCNo").val()+"&address="+$("#profileAddress").val()+"",false);
     xmlhttp.send();
-    if(xmlhttp.responseText == "Success")
+    if(xmlhttp.responseText == "Success"){
         alert("Profile information updated");
+        location.reload
+    }
     else
         alert("Update fail.");
     })
@@ -394,7 +398,8 @@ function deleteImg(id){
             $(".add-new").click(function(){
             $("#uploadProfile").click();
         });
-        });
+
+    });
             
 
     function showText(){
@@ -432,11 +437,53 @@ function deleteImg(id){
                 }
                 xmlhttp.open("GET","ajaxAddPerm.php?type="+type+"&service="+service+"&description="+description+"&price="+price+"",true);
                 xmlhttp.send();
+                alert(" Performances Added");
+                document.getElementById("add").click();
+                
     }
 
-    function popup(){
+
+    function delPerformance(id){
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function() {
+                    if (this.readyState==4 && this.status==200) {
+                    document.getElementById("listing").innerHTML=this.responseText;
+                    }
+                }
+                xmlhttp.open("GET","ajaxDelPerm.php?id="+id+"",false);
+                xmlhttp.send();
+    }
+
+    function popup(id){
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function() {
+                    if (this.readyState==4 && this.status==200) {
+                    document.getElementById("popdiv").innerHTML=this.responseText;
+                    }
+                }
+                xmlhttp.open("GET","ajaxShowEdit.php?id="+id+"",false);
+                xmlhttp.send();
+                if(xmlhttp.responseText != "Failed")
                 $(".backdrop").fadeTo(200, 1);
+                else
+                alert(xmlhttp.responseText)
             }
+
+    function confirmEdit(id){
+    var desc = document.getElementById("editDesc").value;
+
+    var xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function() {
+        if (this.readyState==4 && this.status==200) {
+        document.getElementById("listing").innerHTML=this.responseText;
+        }
+    }
+    xmlhttp.open("GET","ajaxEditPerm.php?id="+id+"&type="+$("#editType").val()+"&service="+$("#editService").val()+"&description="+desc+"&price="+$("#editPrice").val()+"",false);
+    xmlhttp.send();
+    alert(" Performances updated");
+    $(".backdrop").fadeOut(200);
+            
+    }
 
     function popout(){
                 $(".backdrop").fadeOut(200);

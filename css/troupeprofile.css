@@ -850,45 +850,46 @@ th, td {
   color: var(--red);
 }
 
-#popdiv form{
+#popdiv .edit-form{
   margin-top: -20px;
   z-index: 9999;
 }
 
-#popdiv form .data{
+#popdiv .data{
   height: 45px;
   width: 100%;
   margin: 20px;
   margin-bottom: 5rem;
 }
-#popdiv form .data textarea{
+#popdiv .data textarea{
   width: 100%;
   font-size: 16px;
 }
 
-form .data label{
+.data label{
   font-size: 18px;
 }
-form .data input{
+
+.data input{
   height: 100%;
   width: 100%;
   padding-left: 10px;
   font-size: 17px;
   border: 1px solid silver;
 }
-form .data input:focus{
+.data input:focus{
   border-color: var(--red);
   border-bottom-width: 2px;
 }
 
-form .btn{
+.edit-form .btn{
   margin: 30px 0;
   height: 45px;
   width: 100%;
   position: relative;
   overflow: hidden;
 }
-form .btn button{
+.edit-form .btn button{
   height: 100%;
   width: 100%;
   color: white;
