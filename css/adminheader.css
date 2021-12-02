@@ -244,6 +244,25 @@ a{
   border-bottom-right-radius: 0;
 }
 
+.navbar .profile .profile_dd ul li button{
+  display: block;
+  padding: 15px 35px;
+  position: relative;
+  width: 100%;
+}
+
+.navbar .profile .profile_dd ul li button .picon{
+display: inline-block;
+width: 30px;
+}
+
+.navbar .profile .profile_dd ul li button:hover{
+color: var(--red);
+background: #f0f5ff;
+border-bottom-left-radius: 0;
+border-bottom-right-radius: 0;
+}
+
 .navbar .profile .profile_dd ul li.profile_li a:hover {
     background: transparent;
     cursor: default;

@@ -22,7 +22,7 @@ session_start();
 if(!empty($_SESSION['userRole'])){
     if($_SESSION['userRole'] == "Troupe")
         header("Location: TroupeProfile.php");
-    else
+    else if($_SESSION['userRole'] == "Inviter")
         include "./userHeader.php";
 }
 else

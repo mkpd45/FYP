@@ -7,18 +7,18 @@ $fetchTQuery = "";
 
 include "DBconfig.php";
 
- if($tState == "All" && $tSearch != "")                             //If the user filter the list with only search function.
+ if($tState == "All" && $tSearch != "")                                 //If the user filter the list with only search function.
     $fetchTQuery = "SELECT * From Troupes WHERE troupeName LIKE '%{$tSearch}%';";
-else if($tState != "All" && $tSearch == "" && $tCity == "All")      //If the user filter the list with only troupe state.
+else if($tState != "All" && $tSearch == "" && $tCity == "All")          //If the user filter the list with only troupe state.
     $fetchTQuery = "SELECT * From Troupes WHERE troupeState = '{$tState}';";
-else if($tState != "All" && $tSearch != "" && $tCity == "All")      //If the user filter the list with troupe state and search function.
+else if($tState != "All" && $tSearch != "" && $tCity == "All")          //If the user filter the list with troupe state and search function.
     $fetchTQuery = "SELECT * From Troupes WHERE troupeState = '{$tState}' AND troupeName LIKE '%{$tSearch}%';";
-else if($tState != "All" && $tSearch != "" && $tCity != "All")      //If the user filter the list with troupe state, city and search function.
+else if($tState != "All" && $tSearch != "" && $tCity != "All")          //If the user filter the list with troupe state, city and search function.
     $fetchTQuery = "SELECT * From Troupes WHERE troupeState = '{$tState}'AND city = '{$tCity}' AND troupeName LIKE '%{$tSearch}%';";
-else if($tState != "All" && $tCity != "All")                        //If the user filter the list with troupe state, and city.
+else if($tState != "All" && $tCity != "All")                            //If the user filter the list with troupe state, and city.
     $fetchTQuery = "SELECT * From Troupes WHERE troupeState = '{$tState}' AND city = '{$tCity}';";
 else
-    $fetchTQuery = "SELECT * From Troupes;";                        //No filter applied
+    $fetchTQuery = "SELECT * From Troupes;";                            //No filter applied
 
     try{
         $result = mysqli_query($dbc, $fetchTQuery);

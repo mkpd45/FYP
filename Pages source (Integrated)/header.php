@@ -205,7 +205,7 @@ html{
         <a href="ContactUs.php">Contact Us</a>
     </nav>
     <!-- <span class="badge">3</span> -->
-            <div class="icons">
+            <div class="icons" id="icons">
                 <div class="fas fa-search" id="search-btn"></div>                
                 <div class="fas fa-user" id="login-btn"></div>
             </div>
@@ -260,21 +260,11 @@ html{
                 window.location.href = "TroupeHome.php";
                 else if(xmlhttp.responseText == "<h1 style='text-align:center;color:#09e32d'>Inviter Login success !</h1><br>")
                 window.location.href = "Home.php";
+                else if(xmlhttp.responseText == "<h1 style='text-align:center;color:#09e32d'>Login success !</h1><br>")
+                window.location.href = "AdminTroupe.php";
             }
         });
     });
 
-function redirectPage(){
-    setInterval(function(){
-        var count = document.getElementById("count").innerHTML;
-        count = count - 1;
-        document.getElementById("count").innerHTML = count;
-        if(count == 0)
-        window.location.href = "https://www.youtube.com";
-        },1000);
-    }
-    
-    function please(){
-    window.location.href = "https://www.facebook.com";
-  }
+
 </script>

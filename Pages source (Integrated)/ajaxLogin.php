@@ -15,7 +15,14 @@ $result = mysqli_query($dbc,$troupeEmail);
 while($row = mysqli_fetch_assoc($result)){
     if(strcmp($row['username'], $email) == 0){
         $emailFound = TRUE;
-        if(strcmp($row['password'], $passw) == 0){
+        $pwd = $row['password'];
+        if(password_verify($passw, $pwd))
+            {
+                $isValid = 0;
+            }else{
+                $isValid = 1;
+            }
+        if ($isValid == 0){
             $_SESSION['characterId'] = $row['characterId'];
             $_SESSION['userRole'] = $row['userRole'];
             $_SESSION['name'] = $row['nameUser'];
@@ -43,6 +50,13 @@ if($emailMsg == "" && $passwMsg == "" && $_SESSION['userRole'] == "Troupe"){
 else if($emailMsg == "" && $passwMsg == "" && $_SESSION['userRole'] == "Inviter")
 {
     echo "<h1 style='text-align:center;color:#09e32d'>Inviter Login success !</h1><br>";
+    // echo "<h1 style='text-align:center'>Redirecting to homepage</h1><br>";
+    // echo "<h1 id='count' onclick=redirectPage() style='text-align:center'>3</h1>";
+    
+}
+else if($emailMsg == "" && $passwMsg == "" && $_SESSION['userRole'] == "Admin")
+{
+    echo "<h1 style='text-align:center;color:#09e32d'>Login success !</h1><br>";
     // echo "<h1 style='text-align:center'>Redirecting to homepage</h1><br>";
     // echo "<h1 id='count' onclick=redirectPage() style='text-align:center'>3</h1>";
     

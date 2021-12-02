@@ -47,7 +47,7 @@ while($rowInfo = mysqli_fetch_assoc($infoResult))
         </div>
         <div class="profile-book">
             <div class="booking">
-                <button onclick="location.href='ReserveBooking.php?id=<?php echo $_GET['id'];?>'" class="btn">Book Now</button>
+                <button onclick=checkLogin() class="btn">Book Now</button>
             </div>
         </div>
     </div>
@@ -271,7 +271,18 @@ prevBtn.addEventListener("click", () => {
 });
 
 //Image Slider End
+
+function checkLogin(){
+    var user = "<?php echo $_SESSION['characterId']; ?>";
+
+    if(user != "")
+    location.href='ReserveBooking.php?id=<?php echo $_GET['id'];?>';
+    else
+    alert("Please login to book a lion dance.");
+}
+
 </script>
+
 <?php include "./footer.php" ?>
 </body>
         

@@ -29,7 +29,13 @@
 	</script>
 </head>
 <body>
-
+<?php
+session_start();
+if($_SERVER['REQUEST_METHOD'] == 'POST' && !(isset($_POST['update_btn'])) && !(isset($_POST['discard_btn']))) {
+  session_unset();
+  header("Location: Home.php");
+} 
+?>
 <div class="wrapper">
   <div class="navbar">
     <div class="navbar_left">
@@ -145,7 +151,7 @@
 
         <div class="profile_dd">
           <ul class="profile_ul">
-            <li><a class="logout" href="#"><span class="picon"><i class="fas fa-sign-out-alt"></i></span>Logout</a></li>
+            <li><form method="post"><button class="logout" href="#"><span class="picon"><i class="fas fa-sign-out-alt"></i></span>Logout</button></form></li>
           </ul>
         </div>
       </div>
