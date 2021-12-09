@@ -1,5 +1,5 @@
 <?php
-$bool = require_once 'C:\Users\Acer\vendor\autoload.php';
+$bool = require_once '..\vendor\autoload.php';
         if($bool) 
             echo "vendor loaded"; 
         try {
