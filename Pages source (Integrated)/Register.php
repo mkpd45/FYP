@@ -124,7 +124,7 @@ include "./header.php";
             <span class="msg" id="passwordMsg"></span>
 
             <div style="float:right">
-            <input type="submit" onclick="completeReservation()" class="btn" value="Register Now">
+            <input type="submit" class="btn" value="Register Now">
             </div>
         </form>
 
@@ -204,11 +204,11 @@ include "./header.php";
                 xmlhttp.send("fname="+$("#fname").val()+"&lname="+$("#lname").val()+"&state="+$("#state").val()+"&district="+$("#district").val()+"&phoneNumber="+$("#phoneNumber").val()+"&email="+$("#emailReg").val()+"&password="+$("#password").val()+"");
                 if(xmlhttp.responseText == "Success")
                 {
-                    alert("kukubird");
+                    alert("Register Success, you are ready to make reservation.");
                 }
                 else
                 {
-                    alert("Register Success, you are ready to make reservation.");
+                   alert("Something with the system, please try again later.");
                 }
                 
             }

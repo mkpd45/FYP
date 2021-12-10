@@ -221,7 +221,7 @@ html{
                     <label for="remember-me">remember me</label>
                 </div>
                 <input type="submit" value="login now" class="btn">
-                <p>forget your password <a href="">click here</a></p>
+                <p>forget your password <a href="ForgetPassword.php">click here</a></p>
                 <p>don't have an account <a href="Register.php">create one</a></p>
                 
             </form>
